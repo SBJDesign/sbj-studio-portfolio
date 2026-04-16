@@ -48,6 +48,13 @@ export default async function CaseStudyPage({ params }: Props) {
         <div>
           <h3 className="text-xl font-bold">Outcome</h3>
           <p className="mt-2 text-muted">{project.outcome}</p>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {project.outcomeMetrics.map((metric) => (
+              <li key={metric} className="rounded-full border border-accent/40 px-3 py-1 text-sm">
+                {metric}
+              </li>
+            ))}
+          </ul>
         </div>
       </article>
     </Section>
