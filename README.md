@@ -26,6 +26,22 @@ npm run dev
 
 4. Open [http://localhost:3000](http://localhost:3000)
 
+## Contact form delivery
+
+The contact form posts to `POST /api/contact`.
+
+- For production delivery, set `CONTACT_WEBHOOK_URL` in your environment (e.g. Formspree, Make, Zapier, or your CRM webhook).
+- If `CONTACT_WEBHOOK_URL` is not set, submissions are still accepted and logged on the server.
+
+### Formspree quick setup
+
+1. Create a form at [Formspree](https://formspree.io) and copy your endpoint:
+   - Example: `https://formspree.io/f/xyzabcde`
+2. Copy `.env.example` to `.env.local`:
+   - `CONTACT_WEBHOOK_URL=https://formspree.io/f/xyzabcde`
+3. Restart your dev server and submit a test inquiry from `/contact`.
+4. For deployment (Vercel), add `CONTACT_WEBHOOK_URL` in Project Settings -> Environment Variables.
+
 ## Pages included
 
 - `/` Home

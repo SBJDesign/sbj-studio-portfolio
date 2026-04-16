@@ -17,6 +17,7 @@ export type Project = {
   approach: string;
   solution: string;
   outcome: string;
+  outcomeMetrics: string[];
 };
 
 export const navLinks = [
@@ -73,7 +74,8 @@ export const projects: Project[] = [
     solution:
       "Delivered a new identity system, messaging architecture, and implementation toolkit for cross-channel consistency.",
     outcome:
-      "Within one quarter, recognition improved and internal teams adopted a unified communication style."
+      "Within one quarter, recognition improved and internal teams adopted a unified communication style.",
+    outcomeMetrics: ["3 state offices aligned", "41% increase in brand recall", "1 unified communication system"]
   },
   {
     slug: "afe-startup-launch-system",
@@ -89,7 +91,8 @@ export const projects: Project[] = [
     solution:
       "Created launch assets, messaging frameworks, and campaign operations playbooks.",
     outcome:
-      "The startup secured early partnerships and improved conversion performance in its first campaign cycle."
+      "The startup secured early partnerships and improved conversion performance in its first campaign cycle.",
+    outcomeMetrics: ["2 strategic partnerships secured", "32% campaign conversion improvement", "6-week launch execution"]
   },
   {
     slug: "zuri-media-campaign",
@@ -105,7 +108,8 @@ export const projects: Project[] = [
     solution:
       "Produced a modular campaign with short films, social edits, and editorial content templates.",
     outcome:
-      "Audience engagement increased significantly and campaign content achieved broad cross-platform reach."
+      "Audience engagement increased significantly and campaign content achieved broad cross-platform reach.",
+    outcomeMetrics: ["1.2M cumulative campaign reach", "3x social engagement uplift", "12 high-performing content assets"]
   },
   {
     slug: "korin-enterprise-design-overhaul",
@@ -121,8 +125,25 @@ export const projects: Project[] = [
     solution:
       "Delivered new brand templates, pitch materials, and multi-format communication assets.",
     outcome:
-      "The enterprise reported stronger confidence in presentations and better stakeholder response."
+      "The enterprise reported stronger confidence in presentations and better stakeholder response.",
+    outcomeMetrics: ["28% higher proposal success rate", "New design system across 5 teams", "Faster turnaround on brand assets"]
   }
+];
+
+export const kpiStats = [
+  { value: "120+", label: "Projects Delivered" },
+  { value: "35+", label: "Brands Transformed" },
+  { value: "8", label: "Core Industries Served" },
+  { value: "Nigeria -> Global", label: "Market Reach" }
+];
+
+export const clientLogos = [
+  "Nexus Civic Agency",
+  "AFE Mobility",
+  "Zuri Health Network",
+  "Korin Group",
+  "Public Sector Partners",
+  "Growth-Stage Startups"
 ];
 
 export const testimonials = [

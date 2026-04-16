@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactForm } from "@/components/contact-form";
 import { Section } from "@/components/section";
 
 export const metadata = {
@@ -13,41 +14,7 @@ export default function ContactPage() {
       description="Tell us about your project. SBJ Studio is based in Nigeria and partners with clients globally."
     >
       <div className="grid gap-8 md:grid-cols-2">
-        <form className="space-y-4 rounded-2xl border border-white/10 bg-surface p-6">
-          <label className="block text-sm">
-            Name
-            <input
-              type="text"
-              name="name"
-              required
-              className="mt-2 w-full rounded-xl border border-white/20 bg-black/30 px-4 py-3 outline-none transition focus:border-accent"
-            />
-          </label>
-          <label className="block text-sm">
-            Email
-            <input
-              type="email"
-              name="email"
-              required
-              className="mt-2 w-full rounded-xl border border-white/20 bg-black/30 px-4 py-3 outline-none transition focus:border-accent"
-            />
-          </label>
-          <label className="block text-sm">
-            Project Details
-            <textarea
-              name="details"
-              rows={5}
-              required
-              className="mt-2 w-full rounded-xl border border-white/20 bg-black/30 px-4 py-3 outline-none transition focus:border-accent"
-            />
-          </label>
-          <button
-            type="submit"
-            className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-black"
-          >
-            Send Inquiry
-          </button>
-        </form>
+        <ContactForm />
 
         <aside className="rounded-2xl border border-white/10 bg-surface p-6">
           <h3 className="text-2xl font-black">Direct Channels</h3>

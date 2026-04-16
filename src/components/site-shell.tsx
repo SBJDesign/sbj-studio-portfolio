@@ -42,12 +42,21 @@ export function SiteShell({ children }: { children: ReactNode }) {
             href="/contact"
             className="rounded-full border border-accent/50 px-4 py-2 text-sm font-semibold text-accent transition hover:bg-accent hover:text-black"
           >
-            Work With Us
+            Book Strategy Call
           </Link>
         </div>
       </header>
 
-      <main>{children}</main>
+      <main className="pb-20 md:pb-0">{children}</main>
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-background/95 p-4 backdrop-blur md:hidden">
+        <Link
+          href="/contact"
+          className="block rounded-full bg-accent px-5 py-3 text-center text-sm font-semibold text-black"
+        >
+          Book Strategy Call
+        </Link>
+      </div>
 
       <footer className="border-t border-white/10 py-8">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 text-sm text-muted md:flex-row md:items-center md:justify-between">

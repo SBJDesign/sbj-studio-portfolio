@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AnimatedBlock } from "@/components/animated-block";
 import { Section } from "@/components/section";
 import { TestimonialsSlider } from "@/components/testimonials-slider";
-import { projects, services, testimonials } from "@/data/site-data";
+import { clientLogos, kpiStats, projects, services, testimonials } from "@/data/site-data";
 
 export default function HomePage() {
   return (
@@ -17,14 +17,17 @@ export default function HomePage() {
               We Design Growth, Not Just Graphics
             </h1>
             <p className="mt-6 max-w-lg text-muted">
-              Premium brand strategy, design, media, and growth solutions for ambitious organizations
-              across Africa and beyond.
+              We turn strategy into brand systems, campaigns, and stories that win attention, trust,
+              and market momentum.
+            </p>
+            <p className="mt-4 max-w-xl text-sm uppercase tracking-[0.16em] text-accent">
+              Built for businesses, government agencies, startups, and high-value institutions.
             </p>
             <Link
               href="/contact"
               className="mt-8 inline-flex rounded-full bg-accent px-6 py-3 font-semibold text-black transition hover:scale-[1.02]"
             >
-              Work With Us
+              Book Strategy Call
             </Link>
           </AnimatedBlock>
 
@@ -53,6 +56,17 @@ export default function HomePage() {
           is designed to help clients communicate clearer, earn trust faster, and scale with
           confidence.
         </p>
+      </Section>
+
+      <Section eyebrow="Proof" title="Creative excellence measured by outcomes">
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+          {kpiStats.map((item) => (
+            <article key={item.label} className="rounded-2xl border border-white/10 bg-surface p-5">
+              <p className="text-2xl font-black text-accent">{item.value}</p>
+              <p className="mt-1 text-sm text-muted">{item.label}</p>
+            </article>
+          ))}
+        </div>
       </Section>
 
       <Section eyebrow="Services" title="What we build for ambitious brands">
@@ -90,6 +104,19 @@ export default function HomePage() {
         </div>
       </Section>
 
+      <Section eyebrow="Trusted By" title="Chosen by teams that cannot afford average">
+        <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+          {clientLogos.map((client) => (
+            <div
+              key={client}
+              className="rounded-xl border border-white/10 bg-surface px-4 py-3 text-sm font-semibold text-muted"
+            >
+              {client}
+            </div>
+          ))}
+        </div>
+      </Section>
+
       <Section eyebrow="Testimonials" title="Trusted by leaders building impact">
         <TestimonialsSlider items={testimonials} />
       </Section>
@@ -104,7 +131,7 @@ export default function HomePage() {
             href="/contact"
             className="mt-4 inline-flex rounded-full bg-accent px-6 py-3 font-semibold text-black md:mt-0"
           >
-            Start Your Project
+            Book Strategy Call
           </Link>
         </div>
       </Section>
