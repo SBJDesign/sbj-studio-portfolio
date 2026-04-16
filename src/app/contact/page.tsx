@@ -57,14 +57,17 @@ export default function ContactPage() {
           <div className="mt-6 space-y-3 text-sm">
             <p>
               WhatsApp:{" "}
-              <Link className="text-accent hover:underline" href="https://wa.me/2340000000000">
-                +234 000 000 0000
+              <Link className="text-accent hover:underline" href="https://wa.me/2348169576864">
+                08169576864
               </Link>
             </p>
             <p>
               Email:{" "}
-              <Link className="text-accent hover:underline" href="mailto:hello@sbjstudio.com">
-                hello@sbjstudio.com
+              <Link
+                className="text-accent hover:underline"
+                href="mailto:sbjdesigns.ng@gmail.com"
+              >
+                sbjdesigns.ng@gmail.com
               </Link>
             </p>
             <p className="text-muted">Location: Nigeria - Serving clients worldwide.</p>
