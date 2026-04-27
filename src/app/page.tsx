@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { AnimatedBlock } from "@/components/animated-block";
 import { Section } from "@/components/section";
@@ -106,25 +105,13 @@ export default function HomePage() {
       </Section>
 
       <Section eyebrow="Trusted By" title="Chosen by teams that cannot afford average">
-        <p className="-mt-6 mb-8 max-w-2xl text-sm text-muted">
-          A selection of brands and institutions we have partnered with on strategy, design, and
-          storytelling.
-        </p>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
           {clientLogos.map((client) => (
             <div
-              key={client.src}
-              className="relative flex h-28 items-center justify-center rounded-xl border border-white/10 bg-white/95 px-4 py-3 md:h-32"
+              key={client}
+              className="rounded-xl border border-white/10 bg-surface px-4 py-3 text-sm font-semibold text-muted"
             >
-              <Image
-                src={client.src}
-                alt={client.alt}
-                width={200}
-                height={80}
-                className="max-h-16 w-auto object-contain md:max-h-[4.5rem]"
-                sizes="(max-width: 768px) 45vw, 22vw"
-              />
-              <span className="sr-only">{client.name}</span>
+              {client}
             </div>
           ))}
         </div>

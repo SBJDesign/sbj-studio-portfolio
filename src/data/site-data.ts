@@ -137,34 +137,13 @@ export const kpiStats = [
   { value: "Nigeria -> Global", label: "Market Reach" }
 ];
 
-export type ClientLogo = {
-  name: string;
-  src: string;
-  alt: string;
-};
-
-/** Featured clients — logo files live in `/public/clients`. */
-export const clientLogos: ClientLogo[] = [
-  {
-    name: "Northern Nigeria Flour Mills",
-    src: "/clients/nnfm.png",
-    alt: "Northern Nigeria Flour Mills Plc. (NNFM) logo"
-  },
-  {
-    name: "Golden Penny Foods",
-    src: "/clients/golden-penny-foods.png",
-    alt: "Golden Penny Foods logo — The Home of Good Food"
-  },
-  {
-    name: "KanO First",
-    src: "/clients/kano-first.png",
-    alt: "KanO First logo"
-  },
-  {
-    name: "Mai Kwabo",
-    src: "/clients/mai-kwabo.png",
-    alt: "Mai Kwabo logo"
-  }
+export const clientLogos = [
+  "Nexus Civic Agency",
+  "AFE Mobility",
+  "Zuri Health Network",
+  "Korin Group",
+  "Public Sector Partners",
+  "Growth-Stage Startups"
 ];
 
 export const testimonials = [
