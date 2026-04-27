@@ -11,7 +11,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-text">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-background/90 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-background/85 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
           <Link href="/" className="text-xl font-black tracking-wide">
             SBJ<span className="text-accent">.</span>STUDIO
@@ -40,28 +40,29 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </nav>
           <Link
             href="/contact"
-            className="rounded-full border border-accent/50 px-4 py-2 text-sm font-semibold text-accent transition hover:bg-accent hover:text-black"
+            className="rounded-full border border-accent/50 px-4 py-2 text-sm font-semibold text-accent transition hover:scale-[1.02] hover:bg-accent hover:text-black"
           >
             Book Strategy Call
           </Link>
         </div>
       </header>
 
-      <main className="pb-20 md:pb-0">{children}</main>
+      <main>{children}</main>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-background/95 p-4 backdrop-blur md:hidden">
-        <Link
-          href="/contact"
-          className="block rounded-full bg-accent px-5 py-3 text-center text-sm font-semibold text-black"
-        >
-          Book Strategy Call
-        </Link>
-      </div>
-
-      <footer className="border-t border-white/10 py-8">
+      <footer className="border-t border-white/10 py-10">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
           <p>SBJ Studio - Nigeria based, globally competitive creative partner.</p>
-          <p>© {new Date().getFullYear()} SBJ Studio. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="https://www.instagram.com/sbjdesigns.ng?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              className="text-accent hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+            </Link>
+            <p>© {new Date().getFullYear()} SBJ Studio. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>

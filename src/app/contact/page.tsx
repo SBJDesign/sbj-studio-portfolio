@@ -16,7 +16,7 @@ export default function ContactPage() {
       <div className="grid gap-8 md:grid-cols-2">
         <ContactForm />
 
-        <aside className="rounded-2xl border border-white/10 bg-surface p-6">
+        <aside className="rounded-3xl border border-white/10 bg-surface/90 p-6">
           <h3 className="text-2xl font-black">Direct Channels</h3>
           <p className="mt-3 text-muted">
             Prefer a direct conversation? Reach us instantly through WhatsApp or email.
@@ -35,6 +35,17 @@ export default function ContactPage() {
                 href="mailto:sbjdesigns.ng@gmail.com"
               >
                 sbjdesigns.ng@gmail.com
+              </Link>
+            </p>
+            <p>
+              Instagram:{" "}
+              <Link
+                className="text-accent hover:underline"
+                href="https://www.instagram.com/sbjdesigns.ng?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @sbjdesigns.ng
               </Link>
             </p>
             <p className="text-muted">Location: Nigeria - Serving clients worldwide.</p>

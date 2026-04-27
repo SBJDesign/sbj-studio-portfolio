@@ -16,7 +16,7 @@ export function TestimonialsSlider({ items }: { items: Item[] }) {
   }, [items.length]);
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-surface p-8 shadow-glow">
+    <div className="rounded-3xl border border-white/10 bg-surface/90 p-8 shadow-glow">
       <AnimatePresence mode="wait">
         <motion.blockquote
           key={items[index].name}
@@ -33,6 +33,19 @@ export function TestimonialsSlider({ items }: { items: Item[] }) {
           </footer>
         </motion.blockquote>
       </AnimatePresence>
+      <div className="mt-6 flex items-center gap-2">
+        {items.map((item, dotIndex) => (
+          <button
+            key={item.name}
+            type="button"
+            onClick={() => setIndex(dotIndex)}
+            aria-label={`Show testimonial ${dotIndex + 1}`}
+            className={`h-2.5 rounded-full transition-all ${
+              dotIndex === index ? "w-8 bg-accent" : "w-2.5 bg-white/30 hover:bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

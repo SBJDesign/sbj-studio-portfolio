@@ -25,7 +25,7 @@ export default function HomePage() {
             </p>
             <Link
               href="/contact"
-              className="mt-8 inline-flex rounded-full bg-accent px-6 py-3 font-semibold text-black transition hover:scale-[1.02]"
+              className="mt-8 inline-flex rounded-full bg-accent px-6 py-3 font-semibold text-black transition hover:scale-[1.03]"
             >
               Book Strategy Call
             </Link>
@@ -33,14 +33,15 @@ export default function HomePage() {
 
           <AnimatedBlock delay={0.15}>
             <div className="grid gap-4 sm:grid-cols-2">
-              {["Brand Strategy", "Graphic Design", "Storytelling Media", "Business Growth"].map(
-                (item) => (
-                  <article key={item} className="rounded-2xl border border-white/10 bg-surface p-5">
-                    <p className="text-sm text-muted">Service</p>
-                    <p className="mt-2 font-bold">{item}</p>
-                  </article>
-                )
-              )}
+              {services.slice(0, 4).map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-3xl border border-white/10 bg-white p-5 text-slate-900 transition hover:-translate-y-1"
+                >
+                  <p className="text-sm text-slate-500">{item.category}</p>
+                  <p className="mt-2 font-bold">{item.title}</p>
+                </article>
+              ))}
             </div>
           </AnimatedBlock>
         </div>
@@ -61,9 +62,12 @@ export default function HomePage() {
       <Section eyebrow="Proof" title="Creative excellence measured by outcomes">
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
           {kpiStats.map((item) => (
-            <article key={item.label} className="rounded-2xl border border-white/10 bg-surface p-5">
+            <article
+              key={item.label}
+              className="rounded-3xl border border-white/10 bg-white p-5 text-slate-900 transition hover:-translate-y-1"
+            >
               <p className="text-2xl font-black text-accent">{item.value}</p>
-              <p className="mt-1 text-sm text-muted">{item.label}</p>
+              <p className="mt-1 text-sm text-slate-600">{item.label}</p>
             </article>
           ))}
         </div>
@@ -73,7 +77,7 @@ export default function HomePage() {
         <div className="grid gap-6 md:grid-cols-2">
           {services.map((service, index) => (
             <AnimatedBlock key={service.title} delay={index * 0.06}>
-              <article className="rounded-2xl border border-white/10 bg-surface p-6">
+              <article className="rounded-3xl border border-white/10 bg-surface/90 p-6 transition hover:-translate-y-1 hover:border-accent/50">
                 <p className="text-xs uppercase tracking-[0.2em] text-accent">{service.category}</p>
                 <h3 className="mt-3 text-xl font-bold">{service.title}</h3>
                 <p className="mt-3 text-sm text-muted">{service.description}</p>
@@ -88,14 +92,14 @@ export default function HomePage() {
           {projects.slice(0, 2).map((project) => (
             <article
               key={project.slug}
-              className="rounded-2xl border border-white/10 bg-surface p-6 transition hover:border-accent/70"
+              className="rounded-3xl border border-white/10 bg-surface/90 p-6 transition hover:-translate-y-1 hover:border-accent/70"
             >
               <p className="text-xs uppercase tracking-[0.2em] text-accent">{project.category}</p>
               <h3 className="mt-3 text-2xl font-black">{project.title}</h3>
               <p className="mt-3 text-muted">{project.summary}</p>
               <Link
                 href={`/portfolio/${project.slug}`}
-                className="mt-5 inline-flex text-sm font-semibold text-accent hover:underline"
+                className="mt-5 inline-flex rounded-full border border-accent/50 px-4 py-2 text-sm font-semibold text-accent transition hover:bg-accent hover:text-black"
               >
                 Read case study
               </Link>
@@ -109,7 +113,7 @@ export default function HomePage() {
           {clientLogos.map((client) => (
             <div
               key={client}
-              className="rounded-xl border border-white/10 bg-surface px-4 py-3 text-sm font-semibold text-muted"
+              className="rounded-2xl border border-white/10 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5"
             >
               {client}
             </div>

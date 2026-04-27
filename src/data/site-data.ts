@@ -32,30 +32,70 @@ export const services: Service[] = [
   {
     title: "Brand Positioning & Identity",
     category: "Branding",
-    description: "Shape distinct brand identities that command trust and visibility.",
-    value: "Helps organizations stand out and stay memorable in competitive markets.",
-    deliverables: ["Brand strategy deck", "Logo system", "Brand guidelines"]
+    description:
+      "Build a strategic brand foundation that defines your voice, differentiation, and market relevance.",
+    value: "Helps decision-makers trust your brand faster and choose you with confidence.",
+    deliverables: [
+      "Brand positioning framework",
+      "Naming and messaging architecture",
+      "Visual identity and brand guidelines"
+    ]
+  },
+  {
+    title: "Brand Rollout & Collateral",
+    category: "Branding",
+    description:
+      "Extend your brand into practical touchpoints your team and customers use every day.",
+    value: "Creates consistency across channels and improves professional brand perception.",
+    deliverables: ["Company profile design", "Presentation templates", "Branded communication kits"]
   },
   {
     title: "Visual Communication Design",
     category: "Design",
-    description: "Create digital and print assets that are functional, bold, and premium.",
-    value: "Improves message clarity while raising perceived brand value.",
-    deliverables: ["Campaign visuals", "Corporate profiles", "Social media kits"]
+    description:
+      "Design high-impact digital and print assets that combine clarity, aesthetics, and business purpose.",
+    value: "Improves campaign performance and reinforces a premium market position.",
+    deliverables: ["Campaign key visuals", "Print and outdoor assets", "Social media design systems"]
+  },
+  {
+    title: "Web & Product Experience",
+    category: "Design",
+    description:
+      "Design and develop modern websites and lightweight digital products for brand and growth goals.",
+    value: "Turns your online presence into a conversion-focused business channel.",
+    deliverables: ["Marketing website design", "Landing pages", "UI systems and prototyping"]
   },
   {
     title: "Media Production & Storytelling",
     category: "Media & Content",
-    description: "Produce content that turns ideas into stories people remember.",
-    value: "Builds audience trust and drives engagement across channels.",
-    deliverables: ["Brand documentaries", "Launch videos", "Content calendars"]
+    description:
+      "Produce cinematic and social-first media that communicates your story with authority and emotion.",
+    value: "Builds trust, improves brand recall, and drives audience response.",
+    deliverables: ["Brand films and documentaries", "Commercial video production", "Photography content suites"]
+  },
+  {
+    title: "Content Systems & Channel Management",
+    category: "Media & Content",
+    description:
+      "Create repeatable content engines for social media, campaigns, and thought-leadership distribution.",
+    value: "Keeps your brand visible and relevant without inconsistent output.",
+    deliverables: ["Monthly content calendars", "Social content strategy", "Editorial and post copy"]
   },
   {
     title: "Growth & Market Strategy",
     category: "Strategy",
-    description: "Design practical growth systems for brands scaling in local and global markets.",
-    value: "Aligns creative output with measurable business outcomes.",
-    deliverables: ["Go-to-market plans", "Campaign strategy", "Growth roadmap"]
+    description:
+      "Design practical growth systems for brands scaling in local and international markets.",
+    value: "Aligns creative execution with measurable business outcomes.",
+    deliverables: ["Go-to-market strategy", "Campaign planning and execution map", "Quarterly growth roadmap"]
+  },
+  {
+    title: "Digital Marketing & Optimization",
+    category: "Strategy",
+    description:
+      "Run and optimize digital campaigns using performance insights, search visibility, and conversion testing.",
+    value: "Ensures your media spend and content efforts produce clear ROI.",
+    deliverables: ["Paid media strategy", "SEO and content optimization", "Analytics and performance reporting"]
   }
 ];
 

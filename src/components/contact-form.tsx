@@ -40,7 +40,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-white/10 bg-surface p-6">
+    <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-white/10 bg-surface/90 p-6">
       <label className="block text-sm">
         Name
         <input
@@ -49,7 +49,7 @@ export function ContactForm() {
           required
           value={form.name}
           onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
-          className="mt-2 w-full rounded-xl border border-white/20 bg-black/30 px-4 py-3 outline-none transition focus:border-accent"
+          className="mt-2 w-full rounded-xl border border-white/20 bg-background/60 px-4 py-3 outline-none transition focus:border-accent"
         />
       </label>
       <label className="block text-sm">
@@ -60,7 +60,7 @@ export function ContactForm() {
           required
           value={form.email}
           onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
-          className="mt-2 w-full rounded-xl border border-white/20 bg-black/30 px-4 py-3 outline-none transition focus:border-accent"
+          className="mt-2 w-full rounded-xl border border-white/20 bg-background/60 px-4 py-3 outline-none transition focus:border-accent"
         />
       </label>
       <label className="block text-sm">
@@ -71,7 +71,7 @@ export function ContactForm() {
           required
           value={form.details}
           onChange={(event) => setForm((prev) => ({ ...prev, details: event.target.value }))}
-          className="mt-2 w-full rounded-xl border border-white/20 bg-black/30 px-4 py-3 outline-none transition focus:border-accent"
+          className="mt-2 w-full rounded-xl border border-white/20 bg-background/60 px-4 py-3 outline-none transition focus:border-accent"
         />
       </label>
       <button
@@ -82,7 +82,13 @@ export function ContactForm() {
         {status === "loading" ? "Sending..." : "Send Inquiry"}
       </button>
       {status !== "idle" ? (
-        <p className={`text-sm ${status === "success" ? "text-accent" : "text-red-300"}`}>{message}</p>
+        <p
+          role={status === "error" ? "alert" : "status"}
+          aria-live="polite"
+          className={`text-sm ${status === "success" ? "text-accent" : "text-red-300"}`}
+        >
+          {message}
+        </p>
       ) : null}
     </form>
   );

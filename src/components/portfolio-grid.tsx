@@ -42,14 +42,15 @@ export function PortfolioGrid({ projects }: { projects: Project[] }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: index * 0.05, duration: 0.4 }}
-            className="rounded-2xl border border-white/10 bg-surface p-6 transition hover:-translate-y-1 hover:border-accent/60"
+            whileHover={{ y: -6 }}
+            className="rounded-3xl border border-white/10 bg-surface/90 p-6 transition hover:border-accent/60"
           >
             <p className="mb-2 text-xs uppercase tracking-[0.2em] text-accent">{project.category}</p>
             <h3 className="text-xl font-bold">{project.title}</h3>
             <p className="mt-3 text-sm text-muted">{project.summary}</p>
             <Link
               href={`/portfolio/${project.slug}`}
-              className="mt-5 inline-flex text-sm font-semibold text-accent hover:underline"
+              className="mt-5 inline-flex rounded-full border border-accent/50 px-4 py-2 text-sm font-semibold text-accent transition hover:bg-accent hover:text-black"
             >
               View case study
             </Link>
