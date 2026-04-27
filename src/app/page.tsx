@@ -47,6 +47,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="border-b border-white/10 bg-white/95 text-slate-900">
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-4 px-6 py-8 md:flex-row md:items-center">
+          <p className="max-w-3xl text-lg font-semibold">
+            Every week you delay brand strategy, a competitor captures the attention your business
+            deserves.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+          >
+            Start Your Project
+          </Link>
+        </div>
+      </section>
+
       <Section
         eyebrow="About"
         title="A strategic creative studio for high-value growth"
@@ -57,6 +72,38 @@ export default function HomePage() {
           is designed to help clients communicate clearer, earn trust faster, and scale with
           confidence.
         </p>
+      </Section>
+
+      <Section
+        eyebrow="Why SBJ"
+        title="Built for brands that want market attention and measurable growth"
+        description="We combine strategic thinking, creative execution, and performance discipline so your brand does not just look better - it grows better."
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          {[
+            {
+              title: "Strategy Before Design",
+              text: "Every deliverable is guided by positioning, audience behavior, and business goals."
+            },
+            {
+              title: "Creative Built For Conversion",
+              text: "From campaigns to content systems, we design to drive action - not just impressions."
+            },
+            {
+              title: "Local Insight, Global Standard",
+              text: "African-rooted storytelling with premium execution fit for global competition."
+            },
+            {
+              title: "Long-Term Growth Partnership",
+              text: "We build scalable systems that help your team stay consistent after launch."
+            }
+          ].map((item) => (
+            <article key={item.title} className="rounded-3xl border border-white/10 bg-surface/90 p-6">
+              <h3 className="text-xl font-black">{item.title}</h3>
+              <p className="mt-3 text-muted">{item.text}</p>
+            </article>
+          ))}
+        </div>
       </Section>
 
       <Section eyebrow="Proof" title="Creative excellence measured by outcomes">
@@ -123,6 +170,35 @@ export default function HomePage() {
 
       <Section eyebrow="Testimonials" title="Trusted by leaders building impact">
         <TestimonialsSlider items={testimonials} />
+      </Section>
+
+      <Section eyebrow="Founder" title="The SBJ Perspective">
+        <div className="rounded-3xl border border-accent/40 bg-accent/10 p-8 md:p-10">
+          <p className="text-lg leading-relaxed text-muted">
+            “We built SBJ Studio to prove that strategic creativity from Africa can compete anywhere
+            in the world. Our mission is simple: help ambitious brands become impossible to ignore.”
+          </p>
+          <p className="mt-5 font-semibold text-accent">SBJ — Creative Director, SBJ Studio</p>
+        </div>
+      </Section>
+
+      <Section eyebrow="Follow The Journey" title="See what we are building in real time">
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="https://www.instagram.com/sbjdesigns.ng?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex rounded-full border border-accent/50 px-5 py-2.5 text-sm font-semibold text-accent transition hover:bg-accent hover:text-black"
+          >
+            Instagram
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-text transition hover:border-accent/60 hover:text-accent"
+          >
+            Book Strategy Call
+          </Link>
+        </div>
       </Section>
 
       <Section title="Ready to build your next growth chapter?">
