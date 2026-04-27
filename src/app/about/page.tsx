@@ -23,14 +23,14 @@ export default function AboutPage() {
 
       <Section title="Mission & Vision">
         <div className="grid gap-6 md:grid-cols-2">
-          <article className="rounded-2xl border border-white/10 bg-surface p-6">
+          <article className="rounded-3xl border border-white/10 bg-surface/90 p-6 transition hover:-translate-y-1">
             <h3 className="text-2xl font-bold">Mission</h3>
             <p className="mt-3 text-muted">
               To equip ambitious organizations with world-class creative strategy and execution that
               accelerates growth.
             </p>
           </article>
-          <article className="rounded-2xl border border-white/10 bg-surface p-6">
+          <article className="rounded-3xl border border-white/10 bg-surface/90 p-6 transition hover:-translate-y-1">
             <h3 className="text-2xl font-bold">Vision</h3>
             <p className="mt-3 text-muted">
               To become Africa’s most trusted premium studio for brand-led transformation and global
@@ -41,7 +41,7 @@ export default function AboutPage() {
       </Section>
 
       <Section eyebrow="Founder" title="SBJ Identity">
-        <article className="max-w-3xl rounded-2xl border border-accent/40 bg-accent/10 p-8">
+        <article className="max-w-3xl rounded-3xl border border-accent/40 bg-accent/10 p-8">
           <p className="text-sm uppercase tracking-[0.2em] text-accent">Founder Highlight</p>
           <h3 className="mt-2 text-3xl font-black">SBJ - Creative Director & Strategist</h3>
           <p className="mt-4 text-muted">
