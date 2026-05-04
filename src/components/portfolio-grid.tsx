@@ -23,10 +23,10 @@ export function PortfolioGrid({ projects }: { projects: Project[] }) {
             key={filter}
             type="button"
             onClick={() => setActive(filter)}
-            className={`rounded-full border px-4 py-2 text-sm transition ${
+            className={`rounded-full border px-4 py-2.5 text-sm font-medium transition ${
               active === filter
-                ? "border-accent bg-accent text-black"
-                : "border-white/20 text-text hover:border-accent/70"
+                ? "border-accent bg-accent text-[#0C0C1E] shadow-sm"
+                : "border-white/15 bg-white/[0.04] text-muted hover:border-accent/40 hover:text-text"
             }`}
           >
             {filter}
@@ -42,16 +42,15 @@ export function PortfolioGrid({ projects }: { projects: Project[] }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: index * 0.05, duration: 0.4 }}
-            whileHover={{ y: -6 }}
-            className="rounded-3xl border border-white/10 bg-surface/90 p-6 transition hover:border-accent/60"
+            whileHover={{ y: -4 }}
+            className="card-dark flex flex-col"
           >
-            <p className="mb-2 text-xs uppercase tracking-[0.2em] text-accent">{project.category}</p>
-            <h3 className="text-xl font-bold">{project.title}</h3>
-            <p className="mt-3 text-sm text-muted">{project.summary}</p>
-            <Link
-              href={`/portfolio/${project.slug}`}
-              className="mt-5 inline-flex rounded-full border border-accent/50 px-4 py-2 text-sm font-semibold text-accent transition hover:bg-accent hover:text-black"
-            >
+            <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
+              {project.category}
+            </p>
+            <h3 className="text-xl font-bold tracking-tight">{project.title}</h3>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{project.summary}</p>
+            <Link href={`/portfolio/${project.slug}`} className="btn-ghost mt-6 w-fit">
               View case study
             </Link>
           </motion.article>

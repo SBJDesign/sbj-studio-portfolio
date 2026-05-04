@@ -31,26 +31,29 @@ export default async function CaseStudyPage({ params }: Props) {
 
   return (
     <Section eyebrow="Case Study" title={project.title} description={project.summary}>
-      <article className="space-y-8 rounded-2xl border border-white/10 bg-surface p-8">
-        <p className="text-xs uppercase tracking-[0.2em] text-accent">{project.category}</p>
+      <article className="card-dark space-y-10 !p-8 md:!p-10">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">{project.category}</p>
         <div>
-          <h3 className="text-xl font-bold">Problem</h3>
-          <p className="mt-2 text-muted">{project.problem}</p>
+          <h3 className="text-lg font-bold text-text">Problem</h3>
+          <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">{project.problem}</p>
         </div>
         <div>
-          <h3 className="text-xl font-bold">Approach</h3>
-          <p className="mt-2 text-muted">{project.approach}</p>
+          <h3 className="text-lg font-bold text-text">Approach</h3>
+          <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">{project.approach}</p>
         </div>
         <div>
-          <h3 className="text-xl font-bold">Solution</h3>
-          <p className="mt-2 text-muted">{project.solution}</p>
+          <h3 className="text-lg font-bold text-text">Solution</h3>
+          <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">{project.solution}</p>
         </div>
         <div>
-          <h3 className="text-xl font-bold">Outcome</h3>
-          <p className="mt-2 text-muted">{project.outcome}</p>
+          <h3 className="text-lg font-bold text-text">Outcome</h3>
+          <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">{project.outcome}</p>
           <ul className="mt-4 flex flex-wrap gap-2">
             {project.outcomeMetrics.map((metric) => (
-              <li key={metric} className="rounded-full border border-accent/40 px-3 py-1 text-sm">
+              <li
+                key={metric}
+                className="rounded-full border border-accent/35 bg-accent/10 px-3 py-1.5 text-xs font-medium text-text md:text-sm"
+              >
                 {metric}
               </li>
             ))}
