@@ -22,23 +22,25 @@ export default function ServicesPage() {
       <div className="space-y-10">
         {Object.entries(grouped).map(([category, items]) => (
           <section key={category}>
-            <h2 className="mb-4 text-2xl font-black md:text-3xl">{category}</h2>
-            <div className="grid gap-6 md:grid-cols-2">
+            <h2 className="mb-5 border-b border-white/10 pb-3 text-2xl font-black tracking-tight text-text md:text-3xl">
+              {category}
+            </h2>
+            <div className="grid gap-5 md:grid-cols-2 md:gap-6">
               {items.map((service) => (
-                <article
-                  key={service.title}
-                  className="rounded-3xl border border-white/10 bg-white p-6 text-slate-900 transition hover:-translate-y-1"
-                >
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-black">{service.title}</h3>
+                <article key={service.title} className="card-light !p-7">
+                  <div className="mb-1">
+                    <h3 className="text-xl font-black tracking-tight text-slate-900 md:text-2xl">{service.title}</h3>
                   </div>
-                  <p className="text-slate-600">{service.description}</p>
-                  <p className="mt-3 text-sm text-slate-800">
+                  <p className="text-sm leading-relaxed text-slate-600 md:text-base">{service.description}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-slate-800">
                     <span className="font-semibold text-accent">Value:</span> {service.value}
                   </p>
                   <ul className="mt-4 flex flex-wrap gap-2">
                     {service.deliverables.map((item) => (
-                      <li key={item} className="rounded-full border border-slate-300 px-3 py-1 text-sm">
+                      <li
+                        key={item}
+                        className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 md:text-sm"
+                      >
                         {item}
                       </li>
                     ))}

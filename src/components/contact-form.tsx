@@ -40,8 +40,12 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl border border-white/10 bg-surface/90 p-6">
-      <label className="block text-sm">
+    <form onSubmit={handleSubmit} className="card-dark space-y-5 !p-8">
+      <div>
+        <h3 className="text-lg font-bold text-text">Project inquiry</h3>
+        <p className="mt-1 text-sm text-muted">Share a short brief — we respond within one business day.</p>
+      </div>
+      <label className="block text-sm font-medium text-text/90">
         Name
         <input
           type="text"
@@ -49,10 +53,10 @@ export function ContactForm() {
           required
           value={form.name}
           onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
-          className="mt-2 w-full rounded-xl border border-white/20 bg-background/60 px-4 py-3 outline-none transition focus:border-accent"
+          className="input-field"
         />
       </label>
-      <label className="block text-sm">
+      <label className="block text-sm font-medium text-text/90">
         Email
         <input
           type="email"
@@ -60,10 +64,10 @@ export function ContactForm() {
           required
           value={form.email}
           onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
-          className="mt-2 w-full rounded-xl border border-white/20 bg-background/60 px-4 py-3 outline-none transition focus:border-accent"
+          className="input-field"
         />
       </label>
-      <label className="block text-sm">
+      <label className="block text-sm font-medium text-text/90">
         Project Details
         <textarea
           name="details"
@@ -71,13 +75,13 @@ export function ContactForm() {
           required
           value={form.details}
           onChange={(event) => setForm((prev) => ({ ...prev, details: event.target.value }))}
-          className="mt-2 w-full rounded-xl border border-white/20 bg-background/60 px-4 py-3 outline-none transition focus:border-accent"
+          className="input-field min-h-[140px] resize-y"
         />
       </label>
       <button
         type="submit"
         disabled={status === "loading"}
-        className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-black disabled:cursor-not-allowed disabled:opacity-70"
+        className="btn-primary w-full justify-center py-3.5 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "loading" ? "Sending..." : "Send Inquiry"}
       </button>

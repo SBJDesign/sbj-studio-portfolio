@@ -16,7 +16,7 @@ export function TestimonialsSlider({ items }: { items: Item[] }) {
   }, [items.length]);
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-surface/90 p-8 shadow-glow">
+    <div className="card-dark !border-white/[0.12] !p-8 md:!p-10">
       <AnimatePresence mode="wait">
         <motion.blockquote
           key={items[index].name}
@@ -26,10 +26,12 @@ export function TestimonialsSlider({ items }: { items: Item[] }) {
           transition={{ duration: 0.4 }}
           className="space-y-4"
         >
-          <p className="text-lg leading-relaxed text-text md:text-xl">“{items[index].quote}”</p>
-          <footer>
-            <p className="font-bold">{items[index].name}</p>
-            <p className="text-sm text-muted">{items[index].role}</p>
+          <p className="text-lg font-medium leading-relaxed text-text/95 md:text-xl md:leading-relaxed">
+            “{items[index].quote}”
+          </p>
+          <footer className="border-t border-white/10 pt-5">
+            <p className="font-bold text-text">{items[index].name}</p>
+            <p className="mt-1 text-sm text-muted">{items[index].role}</p>
           </footer>
         </motion.blockquote>
       </AnimatePresence>
