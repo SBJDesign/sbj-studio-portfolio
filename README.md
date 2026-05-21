@@ -26,21 +26,23 @@ npm run dev
 
 4. Open [http://localhost:3000](http://localhost:3000)
 
-## Contact form delivery
+## Contact form delivery (UseSendCore)
 
-The contact form posts to `POST /api/contact`.
+The contact form posts to `POST /api/contact`, which sends inquiries to your inbox via [UseSendCore](https://usesendcore.com).
 
-- For production delivery, set `CONTACT_WEBHOOK_URL` in your environment (e.g. Formspree, Make, Zapier, or your CRM webhook).
-- If `CONTACT_WEBHOOK_URL` is not set, submissions are still accepted and logged on the server.
+1. Copy `.env.example` to `.env.local`.
+2. Add your UseSendCore API key and inbox email:
 
-### Formspree quick setup
+```env
+USESENDCORE_API_KEY=your_api_key_here
+USESENDCORE_FROM=no-reply@usesendcore.com
+CONTACT_INBOX_EMAIL=sbjdesigns.ng@gmail.com
+```
 
-1. Create a form at [Formspree](https://formspree.io) and copy your endpoint:
-   - Example: `https://formspree.io/f/xyzabcde`
-2. Copy `.env.example` to `.env.local`:
-   - `CONTACT_WEBHOOK_URL=https://formspree.io/f/xyzabcde`
-3. Restart your dev server and submit a test inquiry from `/contact`.
-4. For deployment (Vercel), add `CONTACT_WEBHOOK_URL` in Project Settings -> Environment Variables.
+3. Restart the dev server (`npm run dev`) and submit a test from `/contact`.
+4. For Vercel (or other hosts), add the same variables under **Project Settings → Environment Variables**.
+
+Never commit `.env.local` or expose your API key in client-side code.
 
 ## Pages included
 

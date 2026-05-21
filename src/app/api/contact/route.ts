@@ -2,6 +2,64 @@ import { NextResponse } from "next/server";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+async function sendViaUseSendCore(payload: {
+  name: string;
+  email: string;
+  details: string;
+}) {
+  const apiKey = process.env.USESENDCORE_API_KEY;
+  const from = process.env.USESENDCORE_FROM ?? "no-reply@usesendcore.com";
+  const to = process.env.CONTACT_INBOX_EMAIL ?? "sbjdesigns.ng@gmail.com";
+
+  if (!apiKey) {
+    return { ok: false as const, reason: "missing_api_key" as const };
+  }
+
+  const safeName = escapeHtml(payload.name);
+  const safeEmail = escapeHtml(payload.email);
+  const safeDetails = escapeHtml(payload.details).replace(/\n/g, "<br />");
+
+  const response = await fetch("https://api.usesendcore.com/api/v1/emails/send", {
+    method: "POST",
+    headers: {
+      "X-API-Key": apiKey,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from,
+      to,
+      subject: `New inquiry from ${payload.name} — SBJ Studio`,
+      html: `
+        <div style="font-family: system-ui, sans-serif; line-height: 1.6; color: #111;">
+          <h2 style="margin: 0 0 16px;">New contact form submission</h2>
+          <p><strong>Name:</strong> ${safeName}</p>
+          <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
+          <p><strong>Project details:</strong></p>
+          <p style="white-space: pre-wrap;">${safeDetails}</p>
+          <hr style="margin: 24px 0; border: none; border-top: 1px solid #e5e5e5;" />
+          <p style="font-size: 12px; color: #666;">Sent from the SBJ Studio website contact form.</p>
+        </div>
+      `
+    })
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    console.error("UseSendCore error:", response.status, errorText);
+    return { ok: false as const, reason: "api_error" as const };
+  }
+
+  return { ok: true as const };
+}
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { name?: string; email?: string; details?: string };
@@ -17,38 +75,31 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Please enter a valid email address." }, { status: 400 });
     }
 
-    const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
-    if (webhookUrl) {
-      const webhookResponse = await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          source: "SBJ Studio Website",
-          submittedAt: new Date().toISOString(),
-          name,
-          email,
-          details
-        })
-      });
+    const result = await sendViaUseSendCore({ name, email, details });
 
-      if (!webhookResponse.ok) {
+    if (!result.ok) {
+      if (result.reason === "missing_api_key") {
+        console.error("USESENDCORE_API_KEY is not set.");
         return NextResponse.json(
-          { message: "Message received, but delivery failed. Please try WhatsApp instead." },
-          { status: 502 }
+          {
+            message:
+              "Email service is not configured yet. Please contact us on WhatsApp or email directly."
+          },
+          { status: 503 }
         );
       }
-    } else {
-      console.log("Contact form submission", {
-        source: "SBJ Studio Website",
-        submittedAt: new Date().toISOString(),
-        name,
-        email,
-        details
-      });
+
+      return NextResponse.json(
+        {
+          message:
+            "We could not send your message right now. Please try WhatsApp or email us directly."
+        },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({
-      message: "Thanks. We received your inquiry and will respond shortly."
+      message: "Thanks. Your inquiry was sent — we will respond shortly."
     });
   } catch {
     return NextResponse.json({ message: "Invalid request payload." }, { status: 400 });
