@@ -10,17 +10,29 @@ function escapeHtml(value: string) {
     .replace(/"/g, "&quot;");
 }
 
+function parseRecipientList(value: string) {
+  return value
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+}
+
 async function sendViaUseSendCore(payload: {
   name: string;
   email: string;
   details: string;
 }) {
-  const apiKey = process.env.USESENDCORE_API_KEY;
-  const from = process.env.USESENDCORE_FROM ?? "no-reply@usesendcore.com";
-  const to = process.env.CONTACT_INBOX_EMAIL ?? "sbjdesigns.ng@gmail.com";
+  const apiKey = process.env.USESENDCORE_API_KEY?.trim();
+  const from = process.env.USESENDCORE_FROM?.trim() ?? "test@sbj.elasto.ng";
+  const toRaw = process.env.CONTACT_INBOX_EMAIL?.trim() ?? "sbjdesigns.ng@gmail.com";
+  const to = parseRecipientList(toRaw);
 
   if (!apiKey) {
     return { ok: false as const, reason: "missing_api_key" as const };
+  }
+
+  if (to.length === 0) {
+    return { ok: false as const, reason: "missing_recipient" as const };
   }
 
   const safeName = escapeHtml(payload.name);
@@ -36,7 +48,7 @@ async function sendViaUseSendCore(payload: {
     body: JSON.stringify({
       from,
       to,
-      subject: `New inquiry from ${payload.name} — SBJ Studio`,
+      subject: `New inquiry from ${payload.name} - SBJ Studio`,
       html: `
         <div style="font-family: system-ui, sans-serif; line-height: 1.6; color: #111;">
           <h2 style="margin: 0 0 16px;">New contact form submission</h2>
@@ -80,6 +92,17 @@ export async function POST(request: Request) {
     if (!result.ok) {
       if (result.reason === "missing_api_key") {
         console.error("USESENDCORE_API_KEY is not set.");
+        return NextResponse.json(
+          {
+            message:
+              "Email service is not configured yet. Please contact us on WhatsApp or email directly."
+          },
+          { status: 503 }
+        );
+      }
+
+      if (result.reason === "missing_recipient") {
+        console.error("CONTACT_INBOX_EMAIL is not set or invalid.");
         return NextResponse.json(
           {
             message:
