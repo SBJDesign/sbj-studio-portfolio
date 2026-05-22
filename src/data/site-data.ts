@@ -6,6 +6,16 @@ export type Service = {
   deliverables: string[];
 };
 
+export type ProjectImage = {
+  src: string;
+  alt: string;
+  caption: string;
+  fileName: string;
+  downloadLabel: string;
+  width: number;
+  height: number;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -18,15 +28,19 @@ export type Project = {
   solution: string;
   outcome: string;
   outcomeMetrics: string[];
+  coverImage?: string;
+  images?: ProjectImage[];
 };
 
 export const navLinks = [
-  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
+  { href: "/#testimonials", label: "Testimonials" },
   { href: "/contact", label: "Contact" }
 ];
+
+export const serviceIcons = ["◆", "◎", "✦", "◇", "▣", "◈", "⬡", "✧"];
 
 export const services: Service[] = [
   {
@@ -167,6 +181,67 @@ export const projects: Project[] = [
     outcome:
       "The enterprise reported stronger confidence in presentations and better stakeholder response.",
     outcomeMetrics: ["28% higher proposal success rate", "New design system across 5 teams", "Faster turnaround on brand assets"]
+  },
+  {
+    slug: "aky-achievements-infographics",
+    title: "AKY Achievements Infographics",
+    category: "Design",
+    client: "Kano State Government",
+    summary:
+      "Infographic suite communicating outcomes of the 39th Executive Council Meeting — sector approvals, budgets, and impact across Kano State.",
+    tags: ["Infographics", "Government Communications", "Data Visualization"],
+    problem:
+      "Council meeting outcomes involved dense financial and programme data across many ministries, making public communication difficult to scan and share.",
+    approach:
+      "SBJ Studio grouped approvals by sector, designed a consistent government-grade visual system, and highlighted key figures with clear hierarchy and SBJ-powered branding.",
+    solution:
+      "Produced four print- and digital-ready infographics covering education, health, infrastructure, agriculture, environment, land, water, transport, and governance outcomes.",
+    outcome:
+      "Complex council decisions became accessible visual stories for citizens, media, and stakeholders — reinforcing transparency and continuity messaging.",
+    outcomeMetrics: [
+      "4 sector-based infographic panels",
+      "39th Executive Council Meeting coverage",
+      "Print and social-ready formats"
+    ],
+    coverImage: "/portfolio/aky-achievements-infographics/education-sector.png",
+    images: [
+      {
+        src: "/portfolio/aky-achievements-infographics/education-sector.png",
+        alt: "AKY achievements infographic — education sector outcomes",
+        caption: "Education sector — schools, exams, and facility investments",
+        fileName: "aky-education-sector-infographic.png",
+        downloadLabel: "Education",
+        width: 576,
+        height: 1024
+      },
+      {
+        src: "/portfolio/aky-achievements-infographics/health-works-agriculture.png",
+        alt: "AKY achievements infographic — health, works, and agriculture",
+        caption: "Health, works & infrastructure, and agriculture",
+        fileName: "aky-health-works-agriculture-infographic.png",
+        downloadLabel: "Health & works",
+        width: 576,
+        height: 1024
+      },
+      {
+        src: "/portfolio/aky-achievements-infographics/environment-land-water.png",
+        alt: "AKY achievements infographic — environment, land, and water",
+        caption: "Environment, land & urban development, and water resources",
+        fileName: "aky-environment-land-water-infographic.png",
+        downloadLabel: "Environment",
+        width: 576,
+        height: 1024
+      },
+      {
+        src: "/portfolio/aky-achievements-infographics/transport-governance-outcomes.png",
+        alt: "AKY achievements infographic — transport and governance outcomes",
+        caption: "Transport, governance, and cross-sector outcomes",
+        fileName: "aky-transport-governance-infographic.png",
+        downloadLabel: "Governance",
+        width: 576,
+        height: 1024
+      }
+    ]
   }
 ];
 
@@ -178,12 +253,27 @@ export const kpiStats = [
 ];
 
 export const clientLogos = [
-  "Nexus Civic Agency",
-  "AFE Mobility",
-  "Zuri Health Network",
-  "Korin Group",
-  "Public Sector Partners",
-  "Growth-Stage Startups"
+  { name: "Golden Penny", src: "/clients/golden-penny-foods.png" },
+  {
+    name: "Kano State Government",
+    src: "/clients/kano-state-government.png",
+    imageClassName: "h-14 w-14 object-contain opacity-95"
+  },
+  { name: "Kano First", src: "/clients/kano-first.png" },
+  {
+    name: "Global Shapers Community Kano",
+    src: "/clients/global-shapers-kano.png",
+    imageClassName: "h-12 w-auto max-w-[160px] object-contain opacity-95"
+  },
+  { name: "Mai Kwabo", src: "/clients/mai-kwabo.png" },
+  { name: "NNFM", src: "/clients/nnfm.png" }
+];
+
+export const projectVisuals = [
+  "from-accent/40 to-slate-900/60",
+  "from-teal-400/35 to-slate-900/55",
+  "from-accent/30 to-slate-900/70",
+  "from-teal-300/25 to-accent/50"
 ];
 
 export const testimonials = [
