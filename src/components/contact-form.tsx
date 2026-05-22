@@ -40,7 +40,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card-dark space-y-5 !p-8">
+    <form onSubmit={handleSubmit} className="card-glass-gradient card-accent-top relative space-y-5 !p-8 md:!p-10">
       <div>
         <h3 className="text-lg font-bold text-text">Project inquiry</h3>
         <p className="mt-1 text-sm text-muted">Share a short brief — we respond within one business day.</p>

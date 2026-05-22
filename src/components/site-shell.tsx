@@ -10,6 +10,7 @@ import { cn } from "@/lib/cn";
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isHome = pathname === "/";
 
   useEffect(() => {
     setMobileOpen(false);
@@ -28,47 +29,57 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-text">
-      <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-background/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-[4.25rem] w-full max-w-6xl items-center justify-between gap-4 px-6 sm:px-8">
+      {isHome ? (
+        <div className="relative z-[120] border-b border-accent/20 bg-gradient-to-r from-accent/[0.08] via-transparent to-accent/[0.08] py-2.5 text-center text-xs text-muted">
+          Limited strategy slots open — book a call and get priority onboarding.{" "}
           <Link
-            href="/"
-            className="text-lg font-black tracking-[0.12em] text-text transition hover:text-accent sm:text-xl"
+            href="/contact"
+            className="font-semibold text-text underline-offset-2 hover:text-accent hover:underline"
           >
-            SBJ<span className="text-accent">.</span>STUDIO
+            Book now
+          </Link>
+        </div>
+      ) : null}
+
+      <header
+        className={cn(
+          "sticky top-0 border-b border-white/[0.06] bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70",
+          mobileOpen ? "z-[120]" : "z-50"
+        )}
+      >
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-8">
+          <Link href="/" className="shrink-0 text-lg font-black tracking-tight text-text sm:text-xl">
+            SBJ<span className="text-gradient">.</span>STUDIO
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => {
-              const active = pathname === link.href;
+              const active =
+                link.href === "/#testimonials" ? pathname === "/" : pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative rounded-full px-3 py-2 pb-2.5 text-sm font-medium transition",
-                    active ? "text-accent" : "text-muted hover:text-text"
+                    "text-sm font-medium transition duration-300",
+                    active
+                      ? "relative text-accent after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:bg-accent"
+                      : "relative text-muted transition duration-300 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all hover:text-text hover:after:w-full"
                   )}
                 >
                   {link.label}
-                  {active ? (
-                    <motion.span
-                      layoutId="active-link"
-                      className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-accent"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  ) : null}
                 </Link>
               );
             })}
           </nav>
 
-          <div className="flex items-center gap-3">
-            <Link href="/contact" className="btn-primary hidden text-xs sm:inline-flex sm:text-sm">
-              Book Strategy Call
+          <div className="flex shrink-0 items-center gap-3">
+            <Link href="/contact" className="btn-primary hidden px-5 py-2.5 text-sm md:inline-flex">
+              Let&apos;s Talk
             </Link>
             <button
               type="button"
-              className="relative flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 md:hidden"
+              className="relative z-[130] flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.06] md:hidden"
               aria-expanded={mobileOpen}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               onClick={() => setMobileOpen((open) => !open)}
@@ -96,62 +107,106 @@ export function SiteShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main>{children}</main>
+      <main
+        className={cn(mobileOpen && "max-md:pointer-events-none max-md:invisible")}
+        aria-hidden={mobileOpen}
+      >
+        {children}
+      </main>
 
       <AnimatePresence>
         {mobileOpen ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 flex flex-col bg-background/98 px-6 pt-[4.25rem] md:hidden"
-          >
-            <nav className="flex flex-1 flex-col gap-1 py-8">
-              {navLinks.map((link, i) => {
-                const active = pathname === link.href;
-                return (
+          <>
+            <motion.button
+              type="button"
+              aria-label="Close menu"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] bg-black md:hidden"
+              onClick={() => setMobileOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-x-0 bottom-0 top-16 z-[110] flex flex-col overflow-y-auto bg-background px-6 pb-10 pt-6 md:hidden"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
+            >
+              <nav className="flex flex-col gap-1">
+                {navLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * i, duration: 0.25 }}
+                    transition={{ delay: 0.04 * i }}
                   >
                     <Link
                       href={link.href}
-                      className={cn(
-                        "block rounded-xl px-4 py-3 text-lg font-semibold",
-                        active ? "bg-accent/15 text-accent" : "text-text hover:bg-white/5"
-                      )}
+                      onClick={() => setMobileOpen(false)}
+                      className="block rounded-xl px-4 py-4 text-xl font-semibold leading-none text-text transition hover:bg-white/[0.06]"
                     >
                       {link.label}
                     </Link>
                   </motion.div>
-                );
-              })}
-            </nav>
-            <Link href="/contact" className="btn-primary mb-10 w-full justify-center py-3.5 text-base">
-              Book Strategy Call
-            </Link>
-          </motion.div>
+                ))}
+              </nav>
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="btn-primary mt-8 w-full justify-center py-3.5"
+              >
+                Let&apos;s Talk
+              </Link>
+            </motion.div>
+          </>
         ) : null}
       </AnimatePresence>
 
-      <footer className="border-t border-white/[0.08] bg-surface/30 py-12">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 text-sm text-muted sm:px-8 md:flex-row md:items-center md:justify-between">
-          <p className="max-w-md leading-relaxed">
-            SBJ Studio — Nigeria based, globally competitive creative partner.
-          </p>
-          <div className="flex flex-wrap items-center gap-6">
+      <footer
+        className={cn(
+          "relative overflow-hidden border-t border-white/[0.06] bg-black/50 py-14",
+          mobileOpen && "max-md:hidden"
+        )}
+      >
+        <div className="site-footer-mesh pointer-events-none absolute inset-0" aria-hidden />
+        <div className="accent-divider absolute left-0 right-0 top-0" />
+        <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-8">
+          <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+            <div className="max-w-sm">
+              <Link href="/" className="text-lg font-black tracking-tight text-text">
+                SBJ<span className="text-gradient">.</span>STUDIO
+              </Link>
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                Premium creative & growth partner. Nigeria based, globally competitive.
+              </p>
+            </div>
+            <nav className="flex flex-wrap gap-x-8 gap-y-3 text-sm">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-muted transition hover:text-accent"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+          <div className="accent-divider mt-10" />
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4 text-sm">
             <Link
               href="https://www.instagram.com/sbjdesigns.ng?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-              className="font-medium text-accent transition hover:underline"
+              className="font-medium text-accent transition hover:brightness-125"
               target="_blank"
               rel="noopener noreferrer"
             >
               Instagram
             </Link>
-            <p className="text-muted/80">© {new Date().getFullYear()} SBJ Studio</p>
+            <p className="text-muted/70">© {new Date().getFullYear()} SBJ Studio</p>
           </div>
         </div>
       </footer>

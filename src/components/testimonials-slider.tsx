@@ -16,7 +16,7 @@ export function TestimonialsSlider({ items }: { items: Item[] }) {
   }, [items.length]);
 
   return (
-    <div className="card-dark !border-white/[0.12] !p-8 md:!p-10">
+    <div className="card-glass-gradient card-accent-top relative transition duration-300 !p-8 md:!p-10">
       <AnimatePresence mode="wait">
         <motion.blockquote
           key={items[index].name}
