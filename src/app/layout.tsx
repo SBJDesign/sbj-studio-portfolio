@@ -12,8 +12,8 @@ export const metadata: Metadata = {
     "SBJ Studio helps businesses, startups, and institutions build strategic brands, high-impact design, and growth-focused media.",
   metadataBase: new URL("https://sbjstudio.com"),
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png" }],
-    apple: [{ url: "/favicon.png", type: "image/png" }]
+    icon: [{ url: "/logo.png", type: "image/png" }],
+    apple: [{ url: "/logo.png", type: "image/png" }]
   },
   openGraph: {
     title: "SBJ Studio",

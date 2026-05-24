@@ -10,10 +10,17 @@ import { cn } from "@/lib/cn";
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const isHome = pathname === "/";
+  const [hash, setHash] = useState("");
 
   useEffect(() => {
     setMobileOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
   }, [pathname]);
 
   useEffect(() => {
@@ -29,18 +36,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-text">
-      {isHome ? (
-        <div className="relative z-[120] border-b border-accent/20 bg-gradient-to-r from-accent/[0.08] via-transparent to-accent/[0.08] py-2.5 text-center text-xs text-muted">
-          Limited strategy slots open — book a call and get priority onboarding.{" "}
-          <Link
-            href="/contact"
-            className="font-semibold text-text underline-offset-2 hover:text-accent hover:underline"
-          >
-            Book now
-          </Link>
-        </div>
-      ) : null}
-
       <header
         className={cn(
           "sticky top-0 border-b border-white/[0.06] bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70",
@@ -55,7 +50,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <nav className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => {
               const active =
-                link.href === "/#testimonials" ? pathname === "/" : pathname === link.href;
+                link.href === "/#testimonials"
+                  ? pathname === "/" && hash === "#testimonials"
+                  : pathname === link.href;
               return (
                 <Link
                   key={link.href}

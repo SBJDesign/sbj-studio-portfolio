@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { ReactNode } from "react";
+import { AnimatedBlock } from "@/components/animated-block";
+import { BrandIllustration } from "@/components/brand-illustration";
 import { FloatingSparkle } from "@/components/floating-sparkle";
 import { cn } from "@/lib/cn";
 
@@ -14,8 +16,93 @@ type Props = {
   showLogo?: boolean;
   showSparkles?: boolean;
   compact?: boolean;
+  withIllustration?: boolean;
   children?: ReactNode;
 };
+
+type HeroCopyProps = {
+  centered: boolean;
+  showLogo: boolean;
+  compact: boolean;
+  eyebrow: string;
+  title: ReactNode;
+  description?: string;
+  subtitle?: string;
+  children?: ReactNode;
+};
+
+function HeroCopy({
+  centered,
+  showLogo,
+  compact,
+  eyebrow,
+  title,
+  description,
+  subtitle,
+  children,
+}: HeroCopyProps) {
+  return (
+    <>
+      <p className="section-eyebrow">{eyebrow}</p>
+
+      {showLogo ? (
+        <div
+          className={cn(
+            "mt-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-accent/25 bg-accent/10 p-3 shadow-glow",
+            centered && "mx-auto"
+          )}
+        >
+          <Image
+            src="/logo.png"
+            alt="SBJ Studio logo"
+            width={72}
+            height={72}
+            className="h-full w-full object-contain"
+            unoptimized
+            priority
+          />
+        </div>
+      ) : null}
+
+      <h1
+        className={cn(
+          "font-black leading-[1.08] tracking-tight text-text text-balance",
+          showLogo ? "mt-8" : "mt-5",
+          compact ? "text-3xl md:text-5xl" : "text-4xl md:text-6xl md:leading-[1.05] lg:text-7xl"
+        )}
+      >
+        {title}
+      </h1>
+
+      {description ? (
+        <p
+          className={cn(
+            "mt-5 text-base leading-relaxed text-muted md:text-lg",
+            centered && "mx-auto max-w-2xl"
+          )}
+        >
+          {description}
+        </p>
+      ) : null}
+
+      {subtitle ? (
+        <>
+          <div className={cn("accent-divider mt-8", centered && "mx-auto max-w-md")} />
+          <p
+            className={cn(
+              "mt-6 text-sm leading-relaxed text-muted/90 md:text-base",
+              centered && "mx-auto max-w-3xl"
+            )}
+          >
+            {subtitle}
+          </p>
+        </>
+      ) : null}
+
+      {children ? <div className={cn("mt-10", centered && "flex flex-col items-center")}>{children}</div> : null}
+    </>
+  );
+}
 
 export function PageHero({
   eyebrow,
@@ -26,15 +113,16 @@ export function PageHero({
   showLogo = false,
   showSparkles = true,
   compact = false,
+  withIllustration = false,
   children
 }: Props) {
-  const centered = align === "center";
+  const centered = align === "center" && !withIllustration;
 
   return (
     <section
       className={cn(
         "page-hero relative overflow-hidden border-b border-white/[0.06]",
-        compact ? "py-14 md:py-20" : "py-20 md:py-28"
+        compact ? "py-10 sm:py-14 md:py-20" : "py-10 sm:py-16 md:py-28",
       )}
     >
       <div className="page-hero-mesh pointer-events-none absolute inset-0" aria-hidden />
@@ -59,70 +147,56 @@ export function PageHero({
         </>
       ) : null}
 
-      <div
-        className={cn(
-          "relative mx-auto max-w-6xl px-4 sm:px-8",
-          centered ? "max-w-4xl text-center" : "max-w-3xl"
-        )}
-      >
-        <p className="section-eyebrow">{eyebrow}</p>
-
-        {showLogo ? (
-          <div
-            className={cn(
-              "mt-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-accent/25 bg-accent/10 p-3 shadow-glow",
-              centered && "mx-auto"
-            )}
-          >
-            <Image
-              src="/favicon.png"
-              alt=""
-              width={72}
-              height={72}
-              className="h-full w-full object-contain"
-              unoptimized
-              priority
-            />
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
+        {withIllustration ? (
+          <div className="page-hero-grid">
+            <div className="order-1 lg:order-none">
+              <AnimatedBlock>
+                <div className="text-center lg:text-left">
+                  <HeroCopy
+                    centered={false}
+                    showLogo={showLogo}
+                    compact={compact}
+                    eyebrow={eyebrow}
+                    title={title}
+                    description={description}
+                    subtitle={subtitle}
+                  >
+                    {children}
+                  </HeroCopy>
+                </div>
+              </AnimatedBlock>
+            </div>
+            <div className="order-2 lg:order-none">
+              <AnimatedBlock delay={0.12}>
+                <HeroIllustrationPanel />
+              </AnimatedBlock>
+            </div>
           </div>
-        ) : null}
-
-        <h1
-          className={cn(
-            "font-black leading-[1.08] tracking-tight text-text",
-            showLogo ? "mt-8" : "mt-5",
-            compact ? "text-3xl md:text-5xl" : "text-4xl md:text-6xl md:leading-[1.05] lg:text-7xl"
-          )}
-        >
-          {title}
-        </h1>
-
-        {description ? (
-          <p
-            className={cn(
-              "mt-5 text-base leading-relaxed text-muted md:text-lg",
-              centered && "mx-auto max-w-2xl"
-            )}
-          >
-            {description}
-          </p>
-        ) : null}
-
-        {subtitle ? (
-          <>
-            <div className={cn("accent-divider mt-8", centered && "mx-auto max-w-md")} />
-            <p
-              className={cn(
-                "mt-6 text-sm leading-relaxed text-muted/90 md:text-base",
-                centered && "mx-auto max-w-3xl"
-              )}
+        ) : (
+          <div className={cn(centered ? "mx-auto max-w-4xl text-center" : "max-w-3xl")}>
+            <HeroCopy
+              centered={centered}
+              showLogo={showLogo}
+              compact={compact}
+              eyebrow={eyebrow}
+              title={title}
+              description={description}
+              subtitle={subtitle}
             >
-              {subtitle}
-            </p>
-          </>
-        ) : null}
-
-        {children ? <div className={cn("mt-10", centered && "flex flex-col items-center")}>{children}</div> : null}
+              {children}
+            </HeroCopy>
+          </div>
+        )}
       </div>
     </section>
+  );
+}
+
+function HeroIllustrationPanel() {
+  return (
+    <div className="page-hero-illustration">
+      <BrandIllustration className="w-full lg:h-full lg:min-h-[540px]" />
+    </div>
   );
 }

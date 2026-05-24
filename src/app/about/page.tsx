@@ -62,6 +62,8 @@ export default function AboutPage() {
         }
         description="A creative branding and digital agency focused on building impactful brands and helping businesses grow with purpose."
         subtitle="We combine strategy, creativity, and innovation to create visual identities and digital experiences that connect brands with people and leave lasting impressions."
+        withIllustration
+        align="left"
         showLogo
         showSparkles
       />

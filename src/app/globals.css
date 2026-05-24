@@ -7,6 +7,11 @@
     color-scheme: dark;
   }
 
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -129,6 +134,22 @@
 
   .site-footer-mesh {
     background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(54, 201, 194, 0.08), transparent 55%);
+  }
+
+  .brand-illustration-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 100%);
+  }
+
+  .page-hero-grid {
+    @apply grid items-center gap-5 sm:gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-16;
+  }
+
+  .page-hero-illustration {
+    @apply mx-auto w-full max-w-[17rem] sm:max-w-md lg:max-w-none;
   }
 
   .card-accent-top {
