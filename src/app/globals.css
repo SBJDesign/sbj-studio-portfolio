@@ -12,6 +12,10 @@
     overflow-x: clip;
   }
 
+  #testimonials {
+    scroll-margin-top: 5rem;
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -29,8 +33,16 @@
     color: transparent;
   }
 
+  /* Coral accent — energy & action (use sparingly on key headline words) */
+  .text-gradient-coral {
+    background-image: linear-gradient(105deg, #5ee0db 0%, #36c9c2 40%, #ff6a6c 72%, #ff8a8c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-[#0C0C1E] shadow-glow transition duration-300 hover:brightness-110 hover:-translate-y-0.5 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-[#0C0C1E] shadow-glow transition duration-300 hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(54,201,194,0.28),0_0_56px_rgba(255,106,108,0.14)] active:scale-[0.98];
   }
 
   .btn-secondary {
@@ -114,9 +126,9 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(54, 201, 194, 0.15) 20%,
+      rgba(255, 106, 108, 0.22) 18%,
       rgba(54, 201, 194, 0.65) 50%,
-      rgba(54, 201, 194, 0.15) 80%,
+      rgba(255, 106, 108, 0.22) 82%,
       transparent 100%
     );
   }
@@ -125,6 +137,7 @@
     background:
       radial-gradient(ellipse 90% 60% at 50% -20%, rgba(54, 201, 194, 0.18), transparent 55%),
       radial-gradient(ellipse 50% 40% at 0% 50%, rgba(54, 201, 194, 0.08), transparent 50%),
+      radial-gradient(ellipse 48% 40% at 92% 72%, rgba(255, 106, 108, 0.09), transparent 50%),
       radial-gradient(ellipse 45% 35% at 100% 80%, rgba(255, 255, 255, 0.05), transparent 45%);
   }
 
@@ -163,8 +176,8 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #36c9c2, transparent);
-    opacity: 0.85;
+    background: linear-gradient(90deg, transparent, #36c9c2 30%, #ff6a6c 50%, #36c9c2 70%, transparent);
+    opacity: 0.9;
   }
 
   .pillar-number {
@@ -201,8 +214,9 @@ a {
 }
 
 ::selection {
-  background: rgba(54, 201, 194, 0.28);
+  background: rgba(54, 201, 194, 0.26);
   color: #f7f7f7;
+  text-shadow: 0 0 12px rgba(255, 106, 108, 0.15);
 }
 
 @keyframes glow-pulse {

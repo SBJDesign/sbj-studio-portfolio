@@ -16,7 +16,7 @@ export default function PortfolioPage() {
         eyebrow="Portfolio"
         title={
           <>
-            Work that drives <span className="text-gradient">results</span>
+            Work that drives <span className="text-gradient-coral">results</span>
           </>
         }
         description="Case studies across branding, design, media, and strategy — where creativity and strategic thinking delivered measurable value."

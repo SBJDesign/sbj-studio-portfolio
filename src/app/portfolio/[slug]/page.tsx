@@ -48,6 +48,16 @@ export default async function CaseStudyPage({ params }: Props) {
         <p className="text-sm text-muted">
           Client: <span className="font-medium text-text">{project.client}</span>
         </p>
+        {project.websiteUrl ? (
+          <a
+            href={project.websiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary mt-6 inline-flex w-full px-6 py-3 sm:w-auto"
+          >
+            View live site <span aria-hidden>↗</span>
+          </a>
+        ) : null}
       </PageHero>
 
       <Section decor="mesh">
@@ -56,7 +66,11 @@ export default async function CaseStudyPage({ params }: Props) {
             <AnimatedBlock>
               <div className="space-y-4">
                 <h3 className="text-lg font-bold text-text">Project visuals</h3>
-                <ProjectGallery images={project.images} projectTitle={project.title} />
+                <ProjectGallery
+                  images={project.images}
+                  projectTitle={project.title}
+                  showDownloads={!project.galleryViewOnly}
+                />
               </div>
             </AnimatedBlock>
           ) : project.coverImage ? (

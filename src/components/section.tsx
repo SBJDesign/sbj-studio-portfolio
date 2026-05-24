@@ -3,6 +3,7 @@ import { cn } from "@/lib/cn";
 import { SectionHeader } from "@/components/section-header";
 
 type SectionProps = {
+  id?: string;
   eyebrow?: string;
   title?: string;
   description?: string;
@@ -14,6 +15,7 @@ type SectionProps = {
 };
 
 export function Section({
+  id,
   eyebrow,
   title,
   description,
@@ -27,6 +29,7 @@ export function Section({
 
   return (
     <section
+      id={id}
       className={cn(
         "relative overflow-hidden border-b border-white/[0.06] py-14 sm:py-20 md:py-28",
         tone === "muted" ? "bg-white/[0.02]" : "bg-transparent"

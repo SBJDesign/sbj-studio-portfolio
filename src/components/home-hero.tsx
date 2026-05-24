@@ -32,7 +32,7 @@ function HeroCopy() {
     <div className="flex flex-col justify-center text-center lg:flex lg:h-full lg:min-h-[540px] lg:text-left">
       <p className="section-eyebrow">SBJ Studio</p>
       <h1 className="mt-3 text-balance text-3xl font-black leading-[1.1] tracking-tight text-text sm:mt-5 sm:text-4xl sm:leading-[1.08] md:text-5xl md:leading-[1.05] lg:text-6xl xl:text-7xl">
-        Building Brands That Drive <span className="text-gradient">Growth</span>.
+        Building Brands That Drive <span className="text-gradient-coral">Growth</span>.
       </h1>
       <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted sm:mt-6 md:text-lg lg:mx-0">
         SBJ Studio turns strategy into premium design, media, and digital experiences that help
@@ -87,6 +87,10 @@ function MotionDecor() {
       />
       <div
         className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-accent/8 blur-[120px]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-8 top-1/3 h-48 w-48 rounded-full bg-coral/12 blur-[90px]"
         aria-hidden
       />
       <div className="pointer-events-none absolute left-[8%] top-24 text-accent/70">
