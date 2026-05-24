@@ -16,7 +16,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title={
           <>
-            Let&apos;s design your next <span className="text-gradient">milestone</span>
+            Let&apos;s design your next <span className="text-gradient-coral">milestone</span>
           </>
         }
         description="Tell us about your project. SBJ Studio is based in Nigeria and partners with clients globally."

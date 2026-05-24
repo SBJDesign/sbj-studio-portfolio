@@ -50,6 +50,7 @@ export default function HomePage() {
       </Section>
 
       <Section
+        id="testimonials"
         eyebrow="Testimonials"
         title="Real results. Real people."
         align="center"

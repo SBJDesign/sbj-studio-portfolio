@@ -31,7 +31,7 @@ export function CtaBanner({
             aria-hidden
           />
           <div
-            className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 animate-glow-pulse rounded-full bg-accent/15 blur-3xl [animation-delay:1.5s]"
+            className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 animate-glow-pulse rounded-full bg-coral/12 blur-3xl [animation-delay:1.5s]"
             aria-hidden
           />
           <div className="relative">
@@ -43,7 +43,7 @@ export function CtaBanner({
               </p>
             ) : null}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <Link href="/contact" className="btn-primary">
+              <Link href="/contact" className="btn-primary ring-1 ring-coral/20">
                 Start a project
               </Link>
               <Link href="/portfolio" className="btn-secondary">

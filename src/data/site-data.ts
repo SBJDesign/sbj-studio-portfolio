@@ -30,9 +30,12 @@ export type Project = {
   outcomeMetrics: string[];
   coverImage?: string;
   images?: ProjectImage[];
+  websiteUrl?: string;
+  galleryViewOnly?: boolean;
 };
 
 export const navLinks = [
+  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
@@ -114,6 +117,69 @@ export const services: Service[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    slug: "ambil-nigeria-website",
+    title: "Ambil Nigeria Website",
+    category: "Design",
+    client: "Ambil Nigeria",
+    summary:
+      "Website design and build for Ambil Nigeria’s event planning brand — premium storytelling, service clarity, and conversion-focused layouts.",
+    tags: ["Web Design", "Website", "Event Planning", "UX"],
+    problem:
+      "Ambil needed a digital presence that reflected the quality of their events work, explained services clearly, and built trust with corporate and private clients — without a dated or generic template feel.",
+    approach:
+      "SBJ Studio structured the site around key journeys (services, process, social proof), applied a refined teal-and-orange brand system, and designed section-led pages that work on mobile and desktop.",
+    solution:
+      "Delivered a full marketing website with hero messaging, about story, service cards, and credibility sections — live at ambilnigeria.com.",
+    outcome:
+      "The client launched with a polished flagship site that supports lead generation and positions Ambil as a premier events partner in Nigeria.",
+    outcomeMetrics: [
+      "Full website design & build",
+      "Multi-section marketing site",
+      "Live at ambilnigeria.com"
+    ],
+    websiteUrl: "https://ambilnigeria.com/",
+    coverImage: "/portfolio/ambil-nigeria-website/hero.png",
+    galleryViewOnly: true,
+    images: [
+      {
+        src: "/portfolio/ambil-nigeria-website/hero.png",
+        alt: "Ambil Nigeria website homepage hero",
+        caption: "Homepage hero — vision-led messaging and primary calls to action",
+        fileName: "ambil-hero.png",
+        downloadLabel: "Hero",
+        width: 1024,
+        height: 446
+      },
+      {
+        src: "/portfolio/ambil-nigeria-website/about.png",
+        alt: "Ambil Nigeria website about section",
+        caption: "About — team credibility and brand story",
+        fileName: "ambil-about.png",
+        downloadLabel: "About",
+        width: 1024,
+        height: 451
+      },
+      {
+        src: "/portfolio/ambil-nigeria-website/services.png",
+        alt: "Ambil Nigeria website services section",
+        caption: "Services — structured offerings from planning to weddings and corporate events",
+        fileName: "ambil-services.png",
+        downloadLabel: "Services",
+        width: 1024,
+        height: 447
+      },
+      {
+        src: "/portfolio/ambil-nigeria-website/why-us.png",
+        alt: "Ambil Nigeria website why us section",
+        caption: "Why us — value pillars and event showcase imagery",
+        fileName: "ambil-why-us.png",
+        downloadLabel: "Why us",
+        width: 1024,
+        height: 453
+      }
+    ]
+  },
   {
     slug: "nexus-public-sector-rebrand",
     title: "Nexus Public Sector Rebrand",
@@ -294,5 +360,59 @@ export const testimonials = [
     role: "Programs Lead, Zuri Health Network",
     quote:
       "From discovery to delivery, SBJ Studio understood our audience deeply and helped us tell stories that moved people."
+  },
+  {
+    name: "Chidi Okonkwo",
+    role: "Managing Director, Korin Group",
+    quote:
+      "Our pitch materials went from dated to boardroom-ready. SBJ Studio elevated how stakeholders perceive us across Africa."
+  },
+  {
+    name: "Hauwa Ibrahim",
+    role: "Special Adviser, Communications — Kano State Government",
+    quote:
+      "They turned complex council outcomes into clear, shareable visuals citizens and media could understand immediately."
+  },
+  {
+    name: "Fatima Ambil",
+    role: "Director, Ambil Nigeria",
+    quote:
+      "Our website finally matches the quality of our events. The team captured our brand voice and made booking inquiries effortless."
+  },
+  {
+    name: "Emeka Nwosu",
+    role: "Marketing Lead, Golden Penny Foods",
+    quote:
+      "Campaign assets were consistent, on-brand, and delivered on tight timelines. Engagement improved across our key channels."
+  },
+  {
+    name: "Zainab Abubakar",
+    role: "Curator, Global Shapers Community Kano",
+    quote:
+      "SBJ Studio helped us package our programs with polish and clarity. Partners and sponsors responded to the new look instantly."
+  },
+  {
+    name: "David Okafor",
+    role: "Head of Brand, Mai Kwabo",
+    quote:
+      "They listen first, then design. Every revision felt intentional — not decorative — and our retail presence is stronger for it."
+  },
+  {
+    name: "Sarah Mensah",
+    role: "Communications Manager, NNFM",
+    quote:
+      "Reliable partners from concept to rollout. Their content systems keep our teams aligned without slowing execution down."
+  },
+  {
+    name: "Ibrahim Musa",
+    role: "CEO, NovaBridge Consulting",
+    quote:
+      "We needed credibility fast for a new market entry. SBJ Studio delivered a full brand and digital kit that opened doors."
+  },
+  {
+    name: "Grace Adeyemi",
+    role: "Creative Director, Pulse Media Collective",
+    quote:
+      "Sharp storytelling, beautiful craft, and zero drama on set. They are our go-to when the brief has to perform commercially."
   }
 ];

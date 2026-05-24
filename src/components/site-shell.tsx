@@ -7,6 +7,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/data/site-data";
 import { cn } from "@/lib/cn";
 
+function isNavLinkActive(href: string, pathname: string, hash: string) {
+  if (href === "/") return pathname === "/" && hash !== "#testimonials";
+  if (href === "/#testimonials") return pathname === "/" && hash === "#testimonials";
+  return pathname === href;
+}
+
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -49,10 +55,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
           <nav className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => {
-              const active =
-                link.href === "/#testimonials"
-                  ? pathname === "/" && hash === "#testimonials"
-                  : pathname === link.href;
+              const active = isNavLinkActive(link.href, pathname, hash);
               return (
                 <Link
                   key={link.href}

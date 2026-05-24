@@ -43,7 +43,9 @@ export function TestimonialsSlider({ items }: { items: Item[] }) {
             onClick={() => setIndex(dotIndex)}
             aria-label={`Show testimonial ${dotIndex + 1}`}
             className={`h-2.5 rounded-full transition-all ${
-              dotIndex === index ? "w-8 bg-accent" : "w-2.5 bg-white/30 hover:bg-white/50"
+              dotIndex === index
+                ? "w-8 bg-coral shadow-glow-coral"
+                : "w-2.5 bg-white/30 hover:bg-coral/40"
             }`}
           />
         ))}
