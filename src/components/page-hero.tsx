@@ -49,7 +49,7 @@ function HeroCopy({
         <div
           className={cn(
             "mt-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-accent/25 bg-accent/10 p-3 shadow-glow",
-            centered && "mx-auto"
+            centered ? "mx-auto" : "mx-auto lg:mx-0"
           )}
         >
           <Image

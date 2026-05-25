@@ -49,19 +49,21 @@ function isoPaths(hw: number, extrusion: number) {
 function IsoBlockShape({
   block,
   reduceMotion,
+  showGraphics,
 }: {
   block: IsoBlock;
   reduceMotion: boolean | null;
+  showGraphics: boolean;
 }) {
   const { top, right, left, totalHeight } = isoPaths(block.hw, block.extrusion);
   const y = GROUND_Y - totalHeight;
+  const visible = Boolean(reduceMotion) || showGraphics;
 
   return (
     <g transform={`translate(${block.x}, ${y})`}>
       <motion.g
-        initial={reduceMotion ? false : { opacity: 0, scaleY: 0 }}
-        whileInView={{ opacity: 1, scaleY: 1 }}
-        viewport={{ once: true, amount: 0.4 }}
+        initial={false}
+        animate={visible ? { opacity: 1, scaleY: 1 } : { opacity: 0, scaleY: 0 }}
         transition={{
           duration: 0.85,
           delay: block.delay,
@@ -164,14 +166,35 @@ function TypingTagline({ reduceMotion }: { reduceMotion: boolean | null }) {
 
 export function BrandIllustration({ className }: BrandIllustrationProps) {
   const reduceMotion = useReducedMotion();
+  const cardRef = useRef<HTMLDivElement>(null);
+  const cardInView = useInView(cardRef, { once: true, amount: 0.15, margin: "0px 0px -40px 0px" });
+  const [mobileReady, setMobileReady] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches
+  );
   const uid = useId().replace(/:/g, "");
   const glowId = `sbj-card-glow-${uid}`;
   const growthArrowId = `growth-arrow-${uid}`;
   const frameGlowId = `frame-glow-${uid}`;
 
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const enable = () => setMobileReady(true);
+    if (mq.matches) {
+      enable();
+      return undefined;
+    }
+    mq.addEventListener("change", enable);
+    return () => mq.removeEventListener("change", enable);
+  }, []);
+
+  const showGraphics = Boolean(reduceMotion) || cardInView || mobileReady;
+
   return (
     <div className={cn("flex w-full items-center justify-center", className)}>
-      <div className="brand-illustration relative aspect-square w-full overflow-hidden rounded-2xl border border-white/[0.1] bg-[#080812] shadow-card max-sm:shadow-[0_8px_32px_rgba(0,0,0,0.35)] sm:max-w-[min(100%,22rem)] lg:w-[90%] lg:max-w-[90%]">
+      <div
+        ref={cardRef}
+        className="brand-illustration relative aspect-square w-full min-h-[14rem] overflow-hidden rounded-2xl border border-white/[0.1] bg-[#080812] shadow-card max-sm:min-h-[17rem] max-sm:shadow-[0_8px_32px_rgba(0,0,0,0.35)] sm:max-w-[min(100%,22rem)] lg:w-[90%] lg:max-w-[90%]"
+      >
         <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/[0.08] via-transparent to-[#FF6A6C]/[0.06]" aria-hidden />
       <motion.div
         className="pointer-events-none absolute inset-[1px] rounded-[15px] border border-white/[0.06]"
@@ -197,7 +220,8 @@ export function BrandIllustration({ className }: BrandIllustrationProps) {
 
       <svg
         viewBox="0 0 420 420"
-        className="relative h-full w-full"
+        preserveAspectRatio="xMidYMid meet"
+        className="relative block h-full min-h-[12rem] w-full sm:min-h-0"
         role="img"
         aria-label="SBJ Studio growth illustration — three ascending isometric blocks"
       >
@@ -259,20 +283,20 @@ export function BrandIllustration({ className }: BrandIllustrationProps) {
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeDasharray="6 8"
-          initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 0.75 }}
-          viewport={{ once: true }}
+          initial={false}
+          animate={
+            showGraphics ? { pathLength: 1, opacity: 0.75 } : { pathLength: 0, opacity: 0 }
+          }
           transition={{ duration: 1.4, delay: 0.9, ease: "easeOut" }}
         />
 
         {BLOCKS.map((block, index) => (
-          <IsoBlockShape key={index} block={block} reduceMotion={reduceMotion} />
+          <IsoBlockShape key={index} block={block} reduceMotion={reduceMotion} showGraphics={showGraphics} />
         ))}
 
         <motion.g
-          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          initial={false}
+          animate={showGraphics ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
           transition={{ duration: 0.6, delay: 1.15 }}
         >
           <path d="M 358 108 L 368 98 L 378 108" fill="none" stroke="#FF6A6C" strokeWidth="2" strokeLinecap="round" />
@@ -280,9 +304,8 @@ export function BrandIllustration({ className }: BrandIllustrationProps) {
         </motion.g>
 
         <motion.g
-          initial={reduceMotion ? false : { opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          initial={false}
+          animate={showGraphics ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
           transition={{ duration: 0.5, delay: 1.1 }}
         >
           <motion.circle
@@ -298,7 +321,7 @@ export function BrandIllustration({ className }: BrandIllustrationProps) {
         </motion.g>
       </svg>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 sm:p-5 lg:p-7">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#080812] via-[#080812]/90 to-transparent p-3 pt-10 sm:p-5 sm:pt-12 lg:p-7 lg:pt-14">
         <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-muted sm:mb-2 sm:text-[11px] sm:tracking-[0.24em]">SBJ · STUDIO</p>
         <TypingTagline reduceMotion={reduceMotion} />
       </div>
