@@ -16,7 +16,18 @@ export function TestimonialsSlider({ items }: { items: Item[] }) {
   }, [items.length]);
 
   return (
-    <div className="card-glass-gradient card-accent-top relative transition duration-300 !p-6 sm:!p-8 md:!p-10">
+    <div className="card-glass-gradient card-accent-top relative overflow-hidden transition duration-300 !p-6 sm:!p-8 md:!p-10">
+      <div
+        className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-coral/10 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -bottom-12 -left-12 h-32 w-32 rounded-full bg-accent/10 blur-3xl"
+        aria-hidden
+      />
+      <span className="pointer-events-none absolute left-6 top-4 font-serif text-6xl leading-none text-accent/20 sm:left-8 sm:text-7xl" aria-hidden>
+        &ldquo;
+      </span>
       <AnimatePresence mode="wait">
         <motion.blockquote
           key={items[index].name}
@@ -24,7 +35,7 @@ export function TestimonialsSlider({ items }: { items: Item[] }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.4 }}
-          className="space-y-4"
+          className="relative space-y-4"
         >
           <p className="text-base font-medium leading-relaxed text-text/95 sm:text-lg md:text-xl md:leading-relaxed">
             “{items[index].quote}”

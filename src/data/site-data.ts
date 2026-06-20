@@ -140,7 +140,6 @@ export const projects: Project[] = [
     ],
     websiteUrl: "https://ambilnigeria.com/",
     coverImage: "/portfolio/ambil-nigeria-website/hero.png",
-    galleryViewOnly: true,
     images: [
       {
         src: "/portfolio/ambil-nigeria-website/hero.png",

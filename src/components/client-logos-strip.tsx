@@ -22,10 +22,11 @@ export function ClientLogosStrip() {
 
   return (
     <section className="relative overflow-hidden border-b border-white/[0.06] py-14 md:py-16">
+      <div className="accent-divider absolute left-0 right-0 top-0" aria-hidden />
       <div className="page-section-mesh pointer-events-none absolute inset-0" aria-hidden />
       <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
         <motion.p
-          className="mb-8 text-center text-sm text-muted"
+          className="mb-8 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted/80"
           initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

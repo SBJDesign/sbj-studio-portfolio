@@ -4,9 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AnimatedBlock } from "@/components/animated-block";
 import { CtaBanner } from "@/components/cta-banner";
-import { PageHero } from "@/components/page-hero";
 import { ProjectGallery } from "@/components/project-gallery";
-import { Section } from "@/components/section";
 import { projects } from "@/data/site-data";
 
 type Props = {
@@ -35,103 +33,130 @@ export default async function CaseStudyPage({ params }: Props) {
 
   if (!project) notFound();
 
+  const hasGallery = Boolean(project.images?.length);
+  const coverSrc = project.coverImage ?? project.images?.[0]?.src;
+  const galleryImages = hasGallery
+    ? project.coverImage
+      ? project.images!.filter((img) => img.src !== project.coverImage)
+      : project.images!
+    : [];
+
   return (
     <>
-      <PageHero
-        eyebrow={`Case Study · ${project.category}`}
-        title={project.title}
-        description={project.summary}
-        align="left"
-        showSparkles
-        compact
-      >
-        <p className="text-sm text-muted">
-          Client: <span className="font-medium text-text">{project.client}</span>
-        </p>
-        {project.websiteUrl ? (
-          <a
-            href={project.websiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary mt-6 inline-flex w-full px-6 py-3 sm:w-auto"
-          >
-            View live site <span aria-hidden>↗</span>
-          </a>
-        ) : null}
-      </PageHero>
+      <article className="project-case">
+        <header className="border-b border-white/[0.06] bg-background px-4 py-12 sm:px-8 sm:py-16 md:py-20">
+          <div className="mx-auto max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+              {project.category}
+            </p>
+            <h1 className="mt-4 text-3xl font-black leading-tight tracking-tight text-text sm:text-4xl md:text-5xl">
+              {project.title}
+            </h1>
+            <p className="mt-5 text-base leading-relaxed text-muted md:text-lg">{project.summary}</p>
 
-      <Section decor="mesh">
-        <article className="space-y-10">
-          {project.images?.length ? (
-            <AnimatedBlock>
-              <div className="space-y-4">
-                <h3 className="text-lg font-bold text-text">Project visuals</h3>
-                <ProjectGallery
-                  images={project.images}
-                  projectTitle={project.title}
-                  showDownloads={!project.galleryViewOnly}
-                />
-              </div>
-            </AnimatedBlock>
-          ) : project.coverImage ? (
-            <AnimatedBlock>
-              <div className="overflow-hidden rounded-2xl border border-white/[0.08] shadow-card">
-                <Image
-                  src={project.coverImage}
-                  alt={project.title}
-                  width={1200}
-                  height={1600}
-                  className="h-auto w-full"
-                  priority
-                  sizes="(max-width: 768px) 100vw, 1200px"
-                />
-              </div>
-            </AnimatedBlock>
-          ) : null}
-
-          <AnimatedBlock delay={0.08}>
-            <div className="card-glass-gradient card-accent-top space-y-10 !p-8 md:!p-10">
-              {[
-                { label: "Problem", text: project.problem },
-                { label: "Approach", text: project.approach },
-                { label: "Solution", text: project.solution },
-                { label: "Outcome", text: project.outcome }
-              ].map((block) => (
-                <div key={block.label} className="border-b border-white/[0.06] pb-8 last:border-0 last:pb-0">
-                  <h3 className="text-lg font-bold text-text">{block.label}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">{block.text}</p>
-                </div>
-              ))}
-              <ul className="flex flex-wrap gap-2 pt-2">
-                {project.outcomeMetrics.map((metric) => (
-                  <li
-                    key={metric}
-                    className="rounded-full border border-accent/35 bg-accent/10 px-3 py-1.5 text-xs font-medium text-text md:text-sm"
-                  >
-                    {metric}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-3 pt-4">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-muted"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+              <p className="text-muted">
+                Client{" "}
+                <span className="font-semibold text-text">{project.client}</span>
+              </p>
+              {project.websiteUrl ? (
+                <a
+                  href={project.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-accent transition hover:brightness-125"
+                >
+                  View live project ↗
+                </a>
+              ) : null}
             </div>
-          </AnimatedBlock>
 
-          <div className="text-center">
-            <Link href="/portfolio" className="btn-secondary">
-              ← Back to portfolio
-            </Link>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-muted"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
-        </article>
-      </Section>
+        </header>
+
+        {coverSrc ? (
+          <div className="w-full bg-[#f0f0f2]">
+            <div className="mx-auto max-w-6xl">
+              <Image
+                src={coverSrc}
+                alt={project.title}
+                width={project.images?.[0]?.width ?? 1200}
+                height={project.images?.[0]?.height ?? 800}
+                className="h-auto w-full"
+                priority
+                unoptimized
+                sizes="100vw"
+              />
+            </div>
+          </div>
+        ) : null}
+
+        {galleryImages.length > 0 ? (
+          <div className="w-full bg-[#f0f0f2]">
+            <div className="mx-auto max-w-6xl">
+              <ProjectGallery images={galleryImages} />
+            </div>
+          </div>
+        ) : null}
+
+        <div className="border-b border-white/[0.06] bg-background px-4 py-14 sm:px-8 sm:py-20">
+          <div className="mx-auto max-w-3xl space-y-12">
+            <AnimatedBlock>
+              <div className="space-y-10">
+                {[
+                  { label: "The challenge", text: project.problem },
+                  { label: "Our approach", text: project.approach },
+                  { label: "The solution", text: project.solution },
+                  { label: "The outcome", text: project.outcome }
+                ].map((block) => (
+                  <div key={block.label}>
+                    <h2 className="text-lg font-bold text-text md:text-xl">{block.label}</h2>
+                    <p className="mt-3 text-sm leading-relaxed text-muted md:text-base md:leading-relaxed">
+                      {block.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </AnimatedBlock>
+
+            <AnimatedBlock delay={0.08}>
+              <div>
+                <h2 className="text-lg font-bold text-text md:text-xl">Results</h2>
+                <ul className="mt-4 space-y-2">
+                  {project.outcomeMetrics.map((metric) => (
+                    <li
+                      key={metric}
+                      className="flex items-start gap-3 text-sm text-muted md:text-base"
+                    >
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-coral" aria-hidden />
+                      {metric}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedBlock>
+
+            <div className="flex flex-wrap gap-4 border-t border-white/[0.06] pt-10">
+              <Link href="/portfolio" className="btn-secondary">
+                ← All projects
+              </Link>
+              <Link href="/contact" className="btn-primary">
+                Start a project
+              </Link>
+            </div>
+          </div>
+        </div>
+      </article>
 
       <CtaBanner />
     </>

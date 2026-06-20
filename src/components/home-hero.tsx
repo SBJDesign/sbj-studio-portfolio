@@ -8,6 +8,7 @@ import { FloatingSparkle } from "@/components/floating-sparkle";
 export function HomeHero() {
   return (
     <section className="page-hero relative overflow-hidden border-b border-white/[0.06] py-10 sm:py-16 md:py-24 lg:py-28">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" aria-hidden />
       <MotionDecor />
 
       <div className="page-hero-grid relative mx-auto max-w-6xl px-4 sm:px-8">
@@ -30,8 +31,8 @@ export function HomeHero() {
 function HeroCopy() {
   return (
     <div className="flex flex-col justify-center text-center lg:flex lg:h-full lg:min-h-[540px] lg:text-left">
-      <p className="section-eyebrow">SBJ Studio</p>
-      <h1 className="mt-3 text-balance text-3xl font-black leading-[1.1] tracking-tight text-text sm:mt-5 sm:text-4xl sm:leading-[1.08] md:text-5xl md:leading-[1.05] lg:text-6xl xl:text-7xl">
+      <p className="section-eyebrow-pill mx-auto lg:mx-0">SBJ Studio</p>
+      <h1 className="mt-5 text-balance text-3xl font-black leading-[1.1] tracking-tight text-text sm:mt-6 sm:text-4xl sm:leading-[1.08] md:text-5xl md:leading-[1.05] lg:text-6xl xl:text-7xl">
         Building Brands That Drive <span className="text-gradient-coral">Growth</span>.
       </h1>
       <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted sm:mt-6 md:text-lg lg:mx-0">
@@ -52,7 +53,7 @@ function HeroCopy() {
         <div className="flex -space-x-2">
           {["A", "T", "B", "S"].map((initial, index) => (
             <AnimatedBlock key={initial} delay={0.15 + index * 0.06}>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-background bg-gradient-to-br from-accent to-teal-300 text-[10px] font-bold text-[#0C0C1E] sm:h-9 sm:w-9 sm:text-xs">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-background bg-gradient-to-br from-accent to-teal-300 text-[10px] font-bold text-[#0C0C1E] shadow-[0_0_12px_rgba(54,201,194,0.35)] sm:h-9 sm:w-9 sm:text-xs">
                 {initial}
               </span>
             </AnimatedBlock>

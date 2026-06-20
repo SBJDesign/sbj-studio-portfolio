@@ -7,7 +7,7 @@ export function AboutStats() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="border-b border-white/[0.06] bg-white/[0.02] py-12 md:py-16">
+    <section className="border-b border-white/[0.06] bg-white/[0.015] py-12 md:py-16">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 sm:px-8 lg:grid-cols-4">
         {kpiStats.map((stat, index) => (
           <motion.div
@@ -23,7 +23,7 @@ export function AboutStats() {
               className="pointer-events-none absolute -right-6 -top-6 h-16 w-16 rounded-full bg-accent/15 blur-2xl"
               aria-hidden
             />
-            <p className="relative text-2xl font-black tracking-tight text-gradient md:text-3xl">
+            <p className="relative text-2xl font-black tracking-tight text-gradient-coral md:text-3xl">
               {stat.value}
             </p>
             <p className="relative mt-2 text-xs font-medium uppercase tracking-[0.14em] text-muted">
