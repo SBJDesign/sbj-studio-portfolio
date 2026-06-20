@@ -27,15 +27,15 @@ export function SectionHeader({ eyebrow, title, description, centered, showSpark
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       {eyebrow ? (
-        <motion.p
-          className="section-eyebrow"
+        <motion.div
+          className={cn(centered && "flex justify-center")}
           initial={reduceMotion ? false : { opacity: 0, x: -8 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.05 }}
         >
-          {eyebrow}
-        </motion.p>
+          <p className="section-eyebrow-pill">{eyebrow}</p>
+        </motion.div>
       ) : null}
       <h2
         className={cn(

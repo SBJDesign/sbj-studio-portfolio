@@ -44,7 +44,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-background text-text">
       <header
         className={cn(
-          "sticky top-0 border-b border-white/[0.06] bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70",
+          "site-header-glass sticky top-0",
           mobileOpen ? "z-[120]" : "z-50"
         )}
       >
@@ -63,8 +63,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
                   className={cn(
                     "text-sm font-medium transition duration-300",
                     active
-                      ? "relative text-accent after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:bg-accent"
-                      : "relative text-muted transition duration-300 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all hover:text-text hover:after:w-full"
+                      ? "relative text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-gradient-to-r after:from-accent after:to-coral"
+                      : "relative text-muted transition duration-300 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:rounded-full after:bg-accent after:transition-all hover:text-text hover:after:w-full"
                   )}
                 >
                   {link.label}

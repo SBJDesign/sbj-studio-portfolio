@@ -20,7 +20,7 @@ export function CtaBanner({
     <section className="py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 sm:px-8">
         <motion.div
-          className="card-glass relative overflow-hidden p-10 text-center md:p-14"
+          className="card-glass-gradient card-accent-top relative overflow-hidden p-10 text-center md:p-14"
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}

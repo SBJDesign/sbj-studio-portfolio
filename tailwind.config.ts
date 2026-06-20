@@ -12,10 +12,11 @@ const config: Config = {
         accent: "#36C9C2",
         coral: "#FF6A6C"
       },
-      boxShadow: {
+        boxShadow: {
         glow: "0 0 40px rgba(54, 201, 194, 0.25)",
         "glow-coral": "0 0 36px rgba(255, 106, 108, 0.22)",
-        card: "0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 48px -24px rgba(0, 0, 0, 0.45)",
+        card: "0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 24px 48px -24px rgba(0, 0, 0, 0.5)",
+        elevated: "0 4px 24px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.05) inset",
         "card-light": "0 1px 0 rgba(0, 0, 0, 0.04) inset, 0 18px 40px -20px rgba(15, 23, 42, 0.12)"
       },
       backgroundImage: {

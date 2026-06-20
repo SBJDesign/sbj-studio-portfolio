@@ -43,7 +43,7 @@ function HeroCopy({
 }: HeroCopyProps) {
   return (
     <>
-      <p className="section-eyebrow">{eyebrow}</p>
+      <p className={cn("section-eyebrow-pill", centered && "mx-auto")}>{eyebrow}</p>
 
       {showLogo ? (
         <div
