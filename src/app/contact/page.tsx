@@ -1,100 +1,57 @@
-import Link from "next/link";
-import { AnimatedBlock } from "@/components/animated-block";
+import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
-import { PageHero } from "@/components/page-hero";
-import { Section } from "@/components/section";
+import { Reveal } from "@/components/reveal";
+import { contact } from "@/data/site-data";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Contact | SBJ Studio",
-  description: "Get in touch with SBJ Studio for branding, design, and digital growth projects."
+  description: "Start a branding, design, digital or media project with SBJ Studio."
 };
+
+const channels = [
+  { label: "Email", value: contact.email, href: `mailto:${contact.email}` },
+  { label: "WhatsApp", value: contact.whatsappLabel, href: contact.whatsappUrl },
+  { label: "Instagram", value: contact.instagramLabel, href: contact.instagramUrl },
+  { label: "Studio", value: contact.location }
+];
 
 export default function ContactPage() {
   return (
-    <>
-      <PageHero
-        eyebrow="Contact"
-        title={
-          <>
-            Let&apos;s design your next <span className="text-gradient-coral">milestone</span>
-          </>
-        }
-        description="Tell us about your project. SBJ Studio is based in Nigeria and partners with clients globally."
-        showSparkles
-        compact
-      />
+    <section className="min-h-screen bg-ink px-5 pb-32 pt-40 text-white md:px-10 md:pt-48">
+      <div className="mx-auto max-w-[1280px]">
+        <Reveal>
+          <p className="text-[14px] text-mute">Get in touch</p>
+          <h1 className="display-serif mt-4" style={{ fontSize: "clamp(3.5rem, 11vw, 10rem)" }}>
+            Let&apos;s build
+            <br />
+            something good.
+          </h1>
+        </Reveal>
 
-      <Section decor="mesh">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
-          <AnimatedBlock>
+        <div className="mt-24 grid gap-20 md:grid-cols-[1fr_1.3fr]">
+          <Reveal>
+            <dl className="space-y-8">
+              {channels.map((c) => (
+                <div key={c.label}>
+                  <dt className="text-[13px] uppercase tracking-[0.04em] text-white/45">{c.label}</dt>
+                  <dd className="mt-1 text-2xl">
+                    {c.href ? (
+                      <a href={c.href} target="_blank" rel="noopener noreferrer" className="link-underline">
+                        {c.value}
+                      </a>
+                    ) : (
+                      c.value
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+          <Reveal delay={0.08}>
             <ContactForm />
-          </AnimatedBlock>
-
-          <AnimatedBlock delay={0.08}>
-            <aside className="card-glass-gradient card-accent-top relative flex h-full flex-col !p-8 md:!p-10">
-              <div
-                className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-accent/15 blur-3xl"
-                aria-hidden
-              />
-              <div className="relative">
-                <h3 className="text-xl font-black tracking-tight md:text-2xl">Direct channels</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  Prefer a direct conversation? Reach us instantly through WhatsApp or email.
-                </p>
-                <dl className="mt-8 space-y-5 text-sm">
-                  <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4">
-                    <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                      WhatsApp
-                    </dt>
-                    <dd className="mt-2">
-                      <Link
-                        className="font-medium text-text transition hover:text-accent"
-                        href="https://wa.me/2348169576864"
-                      >
-                        08169576864
-                      </Link>
-                    </dd>
-                  </div>
-                  <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4">
-                    <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                      Email
-                    </dt>
-                    <dd className="mt-2">
-                      <Link
-                        className="font-medium text-text transition hover:text-accent"
-                        href="mailto:sbjdesigns.ng@gmail.com"
-                      >
-                        sbjdesigns.ng@gmail.com
-                      </Link>
-                    </dd>
-                  </div>
-                  <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4">
-                    <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                      Instagram
-                    </dt>
-                    <dd className="mt-2">
-                      <Link
-                        className="font-medium text-text transition hover:text-accent"
-                        href="https://www.instagram.com/sbjdesigns.ng?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        @sbjdesigns.ng
-                      </Link>
-                    </dd>
-                  </div>
-                  <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4">
-                    <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                      Location
-                    </dt>
-                    <dd className="mt-2 text-muted">Nigeria — serving clients worldwide.</dd>
-                  </div>
-                </dl>
-              </div>
-            </aside>
-          </AnimatedBlock>
+          </Reveal>
         </div>
-      </Section>
-    </>
+      </div>
+    </section>
   );
 }

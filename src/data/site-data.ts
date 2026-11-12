@@ -1,417 +1,918 @@
-export type Service = {
-  title: string;
-  category: "Branding" | "Design" | "Media & Content" | "Strategy";
-  description: string;
-  value: string;
-  deliverables: string[];
-};
-
 export type ProjectImage = {
   src: string;
+  /** Optional looping clip shown in place of the image (src is its poster). */
+  video?: string;
   alt: string;
-  caption: string;
-  fileName: string;
-  downloadLabel: string;
   width: number;
   height: number;
+};
+
+export type ProjectFilm = {
+  src: string;
+  poster: string;
+  label: string;
+  portrait?: boolean;
+};
+
+export type ProjectSection = {
+  name: string;
+  spec: string;
+  note: string;
+  /** Each row is one full-width image, or several shown side by side. */
+  rows: ProjectImage[][];
 };
 
 export type Project = {
   slug: string;
   title: string;
-  category: "Branding" | "Design" | "Media & Content" | "Strategy";
-  client: string;
+  tagline: string;
   summary: string;
-  tags: string[];
-  problem: string;
-  approach: string;
-  solution: string;
-  outcome: string;
-  outcomeMetrics: string[];
-  coverImage?: string;
-  images?: ProjectImage[];
-  websiteUrl?: string;
-  galleryViewOnly?: boolean;
+  cover: string;
+  card: string;
+  /** Films shown at the top of the case study (with a sound toggle). */
+  films: ProjectFilm[];
+  /** Optional short silent loop for the Work card. */
+  teaser?: string;
+  facts: [string, string][];
+  about: string[];
+  sections: ProjectSection[];
 };
 
 export const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/work", label: "Work" },
+  { href: "/studio", label: "Studio" },
+  { href: "/thoughts", label: "Thoughts" },
   { href: "/contact", label: "Contact" }
 ];
 
-export const serviceIcons = ["◆", "◎", "✦", "◇", "▣", "◈", "⬡", "✧"];
+export const footerLinks = [
+  { href: "/", label: "Home" },
+  { href: "/work", label: "Work" },
+  { href: "/studio", label: "About" },
+  { href: "/thoughts", label: "Thoughts" },
+  { href: "/contact", label: "Contact" }
+];
 
-export const services: Service[] = [
+export const contact = {
+  email: "sbjdesigns.ng@gmail.com",
+  whatsappLabel: "08169576864",
+  whatsappUrl: "https://wa.me/2348169576864",
+  instagramLabel: "@sbjdesigns.ng",
+  instagramUrl: "https://www.instagram.com/sbjdesigns.ng",
+  location: "Kano, Nigeria"
+};
+
+export const socialLinks = [
+  { href: contact.instagramUrl, label: "Instagram" },
+  { href: contact.whatsappUrl, label: "WhatsApp" },
+  { href: `mailto:${contact.email}`, label: "Email" }
+];
+
+export const studioIntro =
+  "We are a Kano-based studio helping businesses, institutions and changemakers build brands, products and stories that people trust and act on.";
+
+export const positioning = [
+  "We turn ideas into identities for growing businesses, public institutions and community builders across Northern Nigeria and beyond.",
+  "We build brands, websites and campaigns that connect with people through strategy, design and media.",
+  "Every project starts with one question: what should people believe, feel and do after meeting this brand?"
+];
+
+export type ServiceGroup = {
+  title: string;
+  description: string;
+  items: string[];
+};
+
+export const serviceGroups: ServiceGroup[] = [
   {
-    title: "Brand Positioning & Identity",
-    category: "Branding",
+    title: "Strategy",
     description:
-      "Build a strategic brand foundation that defines your voice, differentiation, and market relevance.",
-    value: "Helps decision-makers trust your brand faster and choose you with confidence.",
-    deliverables: [
-      "Brand positioning framework",
-      "Naming and messaging architecture",
-      "Visual identity and brand guidelines"
+      "Clear thinking that helps a brand know who it serves, what it stands for and how it will grow.",
+    items: [
+      "Brand positioning",
+      "Messaging architecture",
+      "Go-to-market and launch planning",
+      "Campaign planning and execution maps",
+      "Digital marketing and SEO",
+      "Analytics and performance reporting"
     ]
   },
   {
-    title: "Brand Rollout & Collateral",
-    category: "Branding",
+    title: "Branding",
     description:
-      "Extend your brand into practical touchpoints your team and customers use every day.",
-    value: "Creates consistency across channels and improves professional brand perception.",
-    deliverables: ["Company profile design", "Presentation templates", "Branded communication kits"]
+      "Visual and verbal identity systems that make a brand recognisable, credible and consistent everywhere it shows up.",
+    items: [
+      "Visual identity and brand guidelines",
+      "Naming and verbal identity",
+      "Company profiles",
+      "Presentation templates",
+      "Letterheads and stationery",
+      "Branded communication kits"
+    ]
   },
   {
-    title: "Visual Communication Design",
-    category: "Design",
+    title: "Design & Digital",
     description:
-      "Design high-impact digital and print assets that combine clarity, aesthetics, and business purpose.",
-    value: "Improves campaign performance and reinforces a premium market position.",
-    deliverables: ["Campaign key visuals", "Print and outdoor assets", "Social media design systems"]
+      "From campaign key visuals to full websites, design that is beautiful, useful and built to convert.",
+    items: [
+      "Marketing websites and landing pages",
+      "UI systems and prototyping",
+      "Campaign key visuals",
+      "Infographics and data visualisation",
+      "Print and outdoor assets",
+      "Social media design systems"
+    ]
   },
   {
-    title: "Web & Product Experience",
-    category: "Design",
+    title: "Media & Content",
     description:
-      "Design and develop modern websites and lightweight digital products for brand and growth goals.",
-    value: "Turns your online presence into a conversion-focused business channel.",
-    deliverables: ["Marketing website design", "Landing pages", "UI systems and prototyping"]
-  },
-  {
-    title: "Media Production & Storytelling",
-    category: "Media & Content",
-    description:
-      "Produce cinematic and social-first media that communicates your story with authority and emotion.",
-    value: "Builds trust, improves brand recall, and drives audience response.",
-    deliverables: ["Brand films and documentaries", "Commercial video production", "Photography content suites"]
-  },
-  {
-    title: "Content Systems & Channel Management",
-    category: "Media & Content",
-    description:
-      "Create repeatable content engines for social media, campaigns, and thought-leadership distribution.",
-    value: "Keeps your brand visible and relevant without inconsistent output.",
-    deliverables: ["Monthly content calendars", "Social content strategy", "Editorial and post copy"]
-  },
-  {
-    title: "Growth & Market Strategy",
-    category: "Strategy",
-    description:
-      "Design practical growth systems for brands scaling in local and international markets.",
-    value: "Aligns creative execution with measurable business outcomes.",
-    deliverables: ["Go-to-market strategy", "Campaign planning and execution map", "Quarterly growth roadmap"]
-  },
-  {
-    title: "Digital Marketing & Optimization",
-    category: "Strategy",
-    description:
-      "Run and optimize digital campaigns using performance insights, search visibility, and conversion testing.",
-    value: "Ensures your media spend and content efforts produce clear ROI.",
-    deliverables: ["Paid media strategy", "SEO and content optimization", "Analytics and performance reporting"]
+      "Stories, films and content engines that keep a brand visible, trusted and talked about.",
+    items: [
+      "Brand films and documentaries",
+      "Commercial video production",
+      "Photography",
+      "Content calendars",
+      "Social content strategy",
+      "Editorial and post copy"
+    ]
   }
 ];
 
 export const projects: Project[] = [
   {
-    slug: "ambil-nigeria-website",
-    title: "Ambil Nigeria Website",
-    category: "Design",
-    client: "Ambil Nigeria",
-    summary:
-      "Website design and build for Ambil Nigeria’s event planning brand — premium storytelling, service clarity, and conversion-focused layouts.",
-    tags: ["Web Design", "Website", "Event Planning", "UX"],
-    problem:
-      "Ambil needed a digital presence that reflected the quality of their events work, explained services clearly, and built trust with corporate and private clients — without a dated or generic template feel.",
-    approach:
-      "SBJ Studio structured the site around key journeys (services, process, social proof), applied a refined teal-and-orange brand system, and designed section-led pages that work on mobile and desktop.",
-    solution:
-      "Delivered a full marketing website with hero messaging, about story, service cards, and credibility sections — live at ambilnigeria.com.",
-    outcome:
-      "The client launched with a polished flagship site that supports lead generation and positions Ambil as a premier events partner in Nigeria.",
-    outcomeMetrics: [
-      "Full website design & build",
-      "Multi-section marketing site",
-      "Live at ambilnigeria.com"
+    "slug": "global-tech-africa-2026",
+    "title": "Global Tech Africa 2026",
+    "tagline": "Venue branding · From Gateway to Growth",
+    "cover": "/work/gta/poster.jpg",
+    "card": "/work/gta/in-photo-wall.jpg",
+    "summary": "Venue branding for Global Tech Africa 2026 in Kano: 34 print pieces, from the welcome arch to the main hall stage.",
+    "facts": [
+      [
+        "Client",
+        "Global Tech Africa"
+      ],
+      [
+        "Event",
+        "GTA 2026 · 3–5 November 2026"
+      ],
+      [
+        "Venue",
+        "Amani Events Center, Kano"
+      ],
+      [
+        "Role",
+        "Venue branding & print design"
+      ],
+      [
+        "Scope",
+        "34 print pieces"
+      ],
+      [
+        "Year",
+        "2026"
+      ]
     ],
-    websiteUrl: "https://ambilnigeria.com/",
-    coverImage: "/portfolio/ambil-nigeria-website/hero.png",
-    images: [
+    "about": [
+      "Global Tech Africa 2026 brought founders, investors, policymakers and builders to the Amani Events Center in Kano from 3 to 5 November 2026. The theme was \"Connecting Africa, Accelerating Growth\" and the sub-theme \"Industrialisation, Market Access and the Sahel Gateway\". SBJ Studio designed the venue branding as part of the event productions team: every wall, backdrop, desk and sign a guest met between the gate and the main hall.",
+      "The idea came from Kano itself. The old city was entered through its kofofi, the arched gates in the city wall, and the programme's own line was \"From Gateway to Growth\". So we turned the four-colour arcs of the GTA identity into gates. The arc only appears at a threshold or a corner: the welcome arch, the registration wall, the photo-wall gateway and the stage edges. Everywhere else the identity runs on white space, bold Montserrat and a single red highlight bar, which keeps the arcs strong where they matter.",
+      "The venue was planned for more than 1,900 guests across two main days, so every piece follows the same large-format rules. The logo and headline sit in the top third, where they survive a head-and-shoulders photo. Nothing important goes in the bottom 60 cm, which is hidden by tables, stage skirts and queues. Each surface carries three things at most. The six GTA pillars each have a colour, and the registration desks are colour-coded to the badges, so guests can find their way from across the hall.",
+      "Long walls were built at 1:10 scale in CMYK and split into print panels, with every cut placed in a gap between portraits or blocks of colour, so the joins disappear on the day."
+    ],
+    "sections": [
       {
-        src: "/portfolio/ambil-nigeria-website/hero.png",
-        alt: "Ambil Nigeria website homepage hero",
-        caption: "Homepage hero — vision-led messaging and primary calls to action",
-        fileName: "ambil-hero.png",
-        downloadLabel: "Hero",
-        width: 1024,
-        height: 446
+        "name": "Welcome Arch & Pillar",
+        "spec": "16 ft arch · 3 × 9 ft pillar · Arrival",
+        "note": "The first threshold. One bold welcome on the arch, with the six pillars split across its legs, and a slim pillar repeating the welcome in English, Hausa and French.",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/arch-mockup.jpg",
+              "alt": "Welcome arch mockup",
+              "width": 2400,
+              "height": 1500
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/arch.jpg",
+              "alt": "Welcome arch artwork",
+              "width": 1800,
+              "height": 1261
+            },
+            {
+              "src": "/work/gta/welcome-pillar.jpg",
+              "alt": "Welcome pillar artwork",
+              "width": 900,
+              "height": 2700
+            }
+          ]
+        ]
       },
       {
-        src: "/portfolio/ambil-nigeria-website/about.png",
-        alt: "Ambil Nigeria website about section",
-        caption: "About — team credibility and brand story",
-        fileName: "ambil-about.png",
-        downloadLabel: "About",
-        width: 1024,
-        height: 451
+        "name": "Registration",
+        "spec": "33 × 9 ft wall · 5 desks",
+        "note": "The wall tells guests where to check in and introduces the six pillars. Each desk is colour-coded to a badge type, so guests find their queue from across the room.",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/in-registration.jpg",
+              "alt": "Registration desks in use at GTA 2026",
+              "width": 1276,
+              "height": 720
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/registration-wall.jpg",
+              "alt": "Registration wall artwork",
+              "width": 4000,
+              "height": 1092
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/registration-mockup.jpg",
+              "alt": "Registration desks mockup",
+              "width": 2400,
+              "height": 1500
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/registration.jpg",
+              "alt": "Registration desk headers and counters",
+              "width": 4000,
+              "height": 813
+            }
+          ]
+        ]
       },
       {
-        src: "/portfolio/ambil-nigeria-website/services.png",
-        alt: "Ambil Nigeria website services section",
-        caption: "Services — structured offerings from planning to weddings and corporate events",
-        fileName: "ambil-services.png",
-        downloadLabel: "Services",
-        width: 1024,
-        height: 447
+        "name": "Speakers & Panelists Photo Wall",
+        "spec": "59 × 9 ft · 5 print panels",
+        "note": "More than 40 speakers on one wall, built around a gateway arch where guests stood for their photos.",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/in-photo-wall.jpg",
+              "alt": "Guests posing at the photo wall gateway",
+              "width": 1276,
+              "height": 720
+            },
+            {
+              "src": "/work/gta/in-photo-wall-crowd.jpg",
+              "alt": "Guests at the speakers photo wall",
+              "width": 1276,
+              "height": 720
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/photo-wall.jpg",
+              "alt": "Photo wall artwork",
+              "width": 3600,
+              "height": 549
+            }
+          ]
+        ]
       },
       {
-        src: "/portfolio/ambil-nigeria-website/why-us.png",
-        alt: "Ambil Nigeria website why us section",
-        caption: "Why us — value pillars and event showcase imagery",
-        fileName: "ambil-why-us.png",
-        downloadLabel: "Why us",
-        width: 1024,
-        height: 453
+        "name": "Main Hall Backdrops",
+        "spec": "12 × 9 ft × 2 · Main hall",
+        "note": "Logo and theme in the top third, clear of the podium, with the full partner line-up below.",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/in-main-hall.jpg",
+              "alt": "Main hall backdrop behind the podium",
+              "width": 1276,
+              "height": 720
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/stage-1.jpg",
+              "alt": "Main hall backdrop 1",
+              "width": 2160,
+              "height": 1620
+            },
+            {
+              "src": "/work/gta/stage-2.jpg",
+              "alt": "Main hall backdrop 2",
+              "width": 2160,
+              "height": 1620
+            }
+          ]
+        ]
+      },
+      {
+        "name": "The Sahel Backdrop",
+        "spec": "15 × 9 ft",
+        "note": "The sub-theme stage: \"The Sahel as Africa's Next Digital Frontier\".",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/sahel-backdrop.jpg",
+              "alt": "Sahel backdrop artwork",
+              "width": 3990,
+              "height": 2394
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Theme & Sahel Feature Walls",
+        "spec": "8 × 9 ft × 2",
+        "note": "One wall for the theme and pillars, one on the dark ground for the Sahel.",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/theme-wall.jpg",
+              "alt": "Theme feature wall",
+              "width": 2133,
+              "height": 2400
+            },
+            {
+              "src": "/work/gta/sahel-wall.jpg",
+              "alt": "Sahel feature wall",
+              "width": 1440,
+              "height": 1621
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Six Pillars Walls",
+        "spec": "20 × 9 ft · 22 × 9 ft · 34 × 9 ft",
+        "note": "Industry, Trade, Infrastructure, Technology, Talent and Investment, each with its own colour and icon.",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/pillars-20.jpg",
+              "alt": "Six pillars 20 ft wall",
+              "width": 4000,
+              "height": 1800
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/pillars-34.jpg",
+              "alt": "Six pillars 34 ft wall",
+              "width": 2800,
+              "height": 741
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/pillars-22.jpg",
+              "alt": "Six pillars 22 ft wall",
+              "width": 2800,
+              "height": 1146
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Kano Opportunity Wall & Word Search",
+        "spec": "33 × 9 ft · 15 × 9 ft · Interactive",
+        "note": "\"What should Kano build next?\" One column per pillar for guests to pin their ideas, next to a giant word search hiding Kano's strengths.",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/in-opportunity-wall.jpg",
+              "alt": "Opportunity wall and word search at the venue",
+              "width": 1276,
+              "height": 720
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/opportunity-wall.jpg",
+              "alt": "Opportunity wall artwork",
+              "width": 4990,
+              "height": 1361
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/word-search.jpg",
+              "alt": "Word search wall artwork",
+              "width": 2700,
+              "height": 1620
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Partners Step-and-Repeat",
+        "spec": "65 × 9 ft",
+        "note": "Even, repeatable visibility for every partner in any photo taken along the wall.",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/partners-wall.jpg",
+              "alt": "Partners wall artwork",
+              "width": 4992,
+              "height": 702
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Hall & Corridor Walls",
+        "spec": "32 × 9 ft · 41 × 9 ft · 59 × 9 ft",
+        "note": "The theme, the sub-theme and the gateway arch, repeated in long format through the venue.",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/corridor-32.jpg",
+              "alt": "32 ft corridor wall",
+              "width": 2996,
+              "height": 843
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/corridor-41.jpg",
+              "alt": "41 ft corridor wall",
+              "width": 4969,
+              "height": 1092
+            }
+          ],
+          [
+            {
+              "src": "/work/gta/corridor-59.jpg",
+              "alt": "59 ft corridor wall",
+              "width": 4957,
+              "height": 757
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Country Signs",
+        "spec": "1 × 1 ft × 6",
+        "note": "A sign for each delegation: flag, country name and the GTA footer bar.",
+        "rows": [
+          [
+            {
+              "src": "/work/gta/country-signs-mockup.jpg",
+              "alt": "Country signs set",
+              "width": 2400,
+              "height": 1500
+            }
+          ]
+        ]
+      }
+    ],
+    "teaser": "/work/gta/gta-teaser.mp4",
+    "films": [
+      {
+        "src": "/work/gta/gta-day-one.mp4",
+        "poster": "/work/gta/poster.jpg",
+        "label": "A glimpse into Day One at GTA 2026, with the venue branding in use."
       }
     ]
   },
   {
-    slug: "nexus-public-sector-rebrand",
-    title: "Nexus Public Sector Rebrand",
-    category: "Branding",
-    client: "Nexus Civic Agency",
-    summary: "A strategic rebrand for a public agency seeking trust and modern relevance.",
-    tags: ["Brand Strategy", "Identity", "Public Sector"],
-    problem:
-      "The agency had low public trust and inconsistent communications across departments.",
-    approach:
-      "We audited citizen touchpoints, aligned internal stakeholders, and reframed the agency narrative around service transparency.",
-    solution:
-      "Delivered a new identity system, messaging architecture, and implementation toolkit for cross-channel consistency.",
-    outcome:
-      "Within one quarter, recognition improved and internal teams adopted a unified communication style.",
-    outcomeMetrics: ["3 state offices aligned", "41% increase in brand recall", "1 unified communication system"]
-  },
-  {
-    slug: "afe-startup-launch-system",
-    title: "AFE Startup Launch System",
-    category: "Strategy",
-    client: "AFE Mobility",
-    summary: "A launch strategy and design framework for a high-growth startup.",
-    tags: ["Go-to-Market", "Launch", "Startup Growth"],
-    problem:
-      "The startup had a promising product but no cohesive market narrative to attract investors and users.",
-    approach:
-      "SBJ Studio mapped audience journeys, defined positioning, and built a phased launch communication plan.",
-    solution:
-      "Created launch assets, messaging frameworks, and campaign operations playbooks.",
-    outcome:
-      "The startup secured early partnerships and improved conversion performance in its first campaign cycle.",
-    outcomeMetrics: ["2 strategic partnerships secured", "32% campaign conversion improvement", "6-week launch execution"]
-  },
-  {
-    slug: "zuri-media-campaign",
-    title: "Zuri Media Story Campaign",
-    category: "Media & Content",
-    client: "Zuri Health Network",
-    summary: "Content-led campaign designed to humanize healthcare communication.",
-    tags: ["Video", "Storytelling", "Campaign"],
-    problem:
-      "Healthcare messaging felt technical and disconnected from real human experiences.",
-    approach:
-      "Our team interviewed patient communities, extracted authentic narratives, and built a story-driven content strategy.",
-    solution:
-      "Produced a modular campaign with short films, social edits, and editorial content templates.",
-    outcome:
-      "Audience engagement increased significantly and campaign content achieved broad cross-platform reach.",
-    outcomeMetrics: ["1.2M cumulative campaign reach", "3x social engagement uplift", "12 high-performing content assets"]
-  },
-  {
-    slug: "korin-enterprise-design-overhaul",
-    title: "Korin Enterprise Design Overhaul",
-    category: "Design",
-    client: "Korin Group",
-    summary: "A premium design refresh for an enterprise operating across Africa.",
-    tags: ["Corporate Design", "Print", "Digital"],
-    problem:
-      "Brand assets looked outdated, leading to weak perception in high-value pitches.",
-    approach:
-      "We restructured visual hierarchies, improved typography, and introduced a premium design system.",
-    solution:
-      "Delivered new brand templates, pitch materials, and multi-format communication assets.",
-    outcome:
-      "The enterprise reported stronger confidence in presentations and better stakeholder response.",
-    outcomeMetrics: ["28% higher proposal success rate", "New design system across 5 teams", "Faster turnaround on brand assets"]
-  },
-  {
-    slug: "aky-achievements-infographics",
-    title: "AKY Achievements Infographics",
-    category: "Design",
-    client: "Kano State Government",
-    summary:
-      "Infographic suite communicating outcomes of the 39th Executive Council Meeting — sector approvals, budgets, and impact across Kano State.",
-    tags: ["Infographics", "Government Communications", "Data Visualization"],
-    problem:
-      "Council meeting outcomes involved dense financial and programme data across many ministries, making public communication difficult to scan and share.",
-    approach:
-      "SBJ Studio grouped approvals by sector, designed a consistent government-grade visual system, and highlighted key figures with clear hierarchy and SBJ-powered branding.",
-    solution:
-      "Produced four print- and digital-ready infographics covering education, health, infrastructure, agriculture, environment, land, water, transport, and governance outcomes.",
-    outcome:
-      "Complex council decisions became accessible visual stories for citizens, media, and stakeholders — reinforcing transparency and continuity messaging.",
-    outcomeMetrics: [
-      "4 sector-based infographic panels",
-      "39th Executive Council Meeting coverage",
-      "Print and social-ready formats"
+    "slug": "northern-creatives-conference-2025",
+    "title": "Northern Creatives Conference 2025",
+    "tagline": "Full event branding and venue branding · Northern Renaissance",
+    "summary": "Event and venue branding for the Northern Creatives Conference 2025 in Kano, from the social campaign to the stage, speakers wall and certificates.",
+    "cover": "/work/ncc/in-speakers-wall.jpg",
+    "card": "/work/ncc/announcement.jpg",
+    "films": [
+      {
+        "src": "/work/ncc/ncc-real-voices.mp4",
+        "poster": "/work/ncc/poster-voices.jpg",
+        "label": "Real voices, real impact: attendees on what NCC 2025 meant to them.",
+        "portrait": true
+      },
+      {
+        "src": "/work/ncc/ncc-welcome-remark.mp4",
+        "poster": "/work/ncc/poster-welcome.jpg",
+        "label": "Welcome remark by the Convener, Ramadan Yusuf, at the branded podium.",
+        "portrait": true
+      }
     ],
-    coverImage: "/portfolio/aky-achievements-infographics/education-sector.png",
-    images: [
+    "facts": [
+      [
+        "Client",
+        "SparkLab Creativity & Innovation Hub"
+      ],
+      [
+        "Event",
+        "Northern Creatives Conference 2025"
+      ],
+      [
+        "Date",
+        "19 November 2025"
+      ],
+      [
+        "Venue",
+        "Meena Event Center, Kano"
+      ],
+      [
+        "Role",
+        "Full event branding & venue branding"
+      ],
+      [
+        "Year",
+        "2025"
+      ]
+    ],
+    "about": [
+      "The Northern Creatives Conference (NCC) brought together filmmakers, designers, performers, artisans, founders and policymakers at the Meena Event Center in Kano on 19 November 2025. It was powered by SparkLab Creativity & Innovation Hub under the theme \"Northern Renaissance: Transforming Northern Creative Landscape\". SBJ Studio handled the full event branding and venue branding: the campaign that filled the feed in the weeks before, and everything guests saw at the venue on the day.",
+      "The system is built from parts that belong to the North. The Kano flyover monument is the photographic ground, a skyline of Kano landmarks runs along the base of every piece, and an adire-style pattern fills the information bars. Over that sit bold grotesque headlines, an italic serif for the voice of the theme, and arch-topped portrait frames that give every speaker the same stage.",
+      "Four colourways (red and amber, blue, olive, and green) let the campaign move fast without losing its shape: speakers, panels, countdowns, audience posts and exhibitor cards each have their own colour, while the layout, footer and skyline stay fixed. At the venue the same parts grew to full scale: a red speakers wall, a teal stage and podium, a sponsors step-and-repeat and a branded entrance, so the conference felt like the campaign come to life.",
+      "SBJ also joined the conference itself as a panelist in the Founders Chat session, \"The Stories Behind the Spark\"."
+    ],
+    "sections": [
       {
-        src: "/portfolio/aky-achievements-infographics/education-sector.png",
-        alt: "AKY achievements infographic — education sector outcomes",
-        caption: "Education sector — schools, exams, and facility investments",
-        fileName: "aky-education-sector-infographic.png",
-        downloadLabel: "Education",
-        width: 576,
-        height: 1024
+        "name": "Arrival & Entrance",
+        "spec": "Venue · Entrance fascia, gate and 20 × 10 ft banners",
+        "note": "Guests met the identity before they reached the hall: a red fascia over the entrance carrying the logo and theme, a teal gate patterned with the event's motif, and large banners along the walkway.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/in-aerial.jpg",
+              "alt": "Aerial view of the NCC 2025 venue entrance",
+              "width": 720,
+              "height": 1280
+            },
+            {
+              "src": "/work/ncc/in-entrance-fascia.jpg",
+              "alt": "Entrance fascia with logo and theme",
+              "width": 720,
+              "height": 1280
+            },
+            {
+              "src": "/work/ncc/in-entrance-gate.jpg",
+              "alt": "Guests walking through the branded entrance gate",
+              "width": 720,
+              "height": 1280
+            }
+          ],
+          [
+            {
+              "src": "/work/ncc/in-artisans-banner.jpg",
+              "alt": "For the Artisans banner at the venue",
+              "width": 720,
+              "height": 1280
+            }
+          ],
+          [
+            {
+              "src": "/work/ncc/entrance-performers.jpg",
+              "alt": "For the Performers entrance banner, 20 × 10 ft",
+              "width": 2576,
+              "height": 1288
+            },
+            {
+              "src": "/work/ncc/entrance-artisans.jpg",
+              "alt": "For the Artisans entrance banner, 20 × 10 ft",
+              "width": 2600,
+              "height": 1300
+            }
+          ]
+        ]
       },
       {
-        src: "/portfolio/aky-achievements-infographics/health-works-agriculture.png",
-        alt: "AKY achievements infographic — health, works, and agriculture",
-        caption: "Health, works & infrastructure, and agriculture",
-        fileName: "aky-health-works-agriculture-infographic.png",
-        downloadLabel: "Health & works",
-        width: 576,
-        height: 1024
+        "name": "Speakers Wall",
+        "spec": "Venue · 43 × 10 ft",
+        "note": "Every speaker, panelist and moderator on one 43 ft wall, alternating portrait and name tiles in amber and maroon, with the Kano skyline along the base.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/in-speakers-wall.jpg",
+              "alt": "Speakers wall at the venue",
+              "width": 720,
+              "height": 1280
+            }
+          ],
+          [
+            {
+              "src": "/work/ncc/speakers-banner.jpg",
+              "alt": "Speakers banner artwork, 43 × 10 ft",
+              "width": 3200,
+              "height": 744
+            }
+          ]
+        ]
       },
       {
-        src: "/portfolio/aky-achievements-infographics/environment-land-water.png",
-        alt: "AKY achievements infographic — environment, land, and water",
-        caption: "Environment, land & urban development, and water resources",
-        fileName: "aky-environment-land-water-infographic.png",
-        downloadLabel: "Environment",
-        width: 576,
-        height: 1024
+        "name": "Tent Walls",
+        "spec": "Venue · 22 × 10 ft panels outside the tent",
+        "note": "The outside of the tent carried the theme, a creativity quote, the audiences NCC was built for, and a photo collage of creative work, each on the flyover monument with the skyline strip.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/tent-wall-theme.jpg",
+              "alt": "Theme wall, 22 × 10 ft",
+              "width": 2576,
+              "height": 1171
+            }
+          ],
+          [
+            {
+              "src": "/work/ncc/tent-wall-quote.jpg",
+              "alt": "Quote wall, 22 × 10 ft",
+              "width": 2600,
+              "height": 1182
+            },
+            {
+              "src": "/work/ncc/tent-wall-who-its-for.jpg",
+              "alt": "Who it's for wall, 22 × 10 ft",
+              "width": 2600,
+              "height": 1182
+            }
+          ],
+          [
+            {
+              "src": "/work/ncc/outside-entrance.jpg",
+              "alt": "Outside entrance wall, 22 × 10 ft",
+              "width": 2600,
+              "height": 1182
+            }
+          ]
+        ]
       },
       {
-        src: "/portfolio/aky-achievements-infographics/transport-governance-outcomes.png",
-        alt: "AKY achievements infographic — transport and governance outcomes",
-        caption: "Transport, governance, and cross-sector outcomes",
-        fileName: "aky-transport-governance-infographic.png",
-        downloadLabel: "Governance",
-        width: 576,
-        height: 1024
+        "name": "Stage, Podium & Hall",
+        "spec": "Venue · Stage backdrop, podium front, hall",
+        "note": "A teal stage system: the logo and theme on the backdrop, a podium front repeating the identity, and the skyline strip tying it to every other piece.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/in-stage.jpg",
+              "alt": "Convener at the branded podium in front of the stage backdrop",
+              "width": 720,
+              "height": 1280
+            },
+            {
+              "src": "/work/ncc/in-hall.jpg",
+              "alt": "The main hall during the conference",
+              "width": 720,
+              "height": 1280
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Sponsors Step-and-Repeat",
+        "spec": "Venue · Photo wall",
+        "note": "The NCC 2025 lockup at the centre, with every partner and sponsor around it for photos.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/in-sponsors-wall.jpg",
+              "alt": "Sponsors step-and-repeat wall",
+              "width": 720,
+              "height": 1280
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Key Visual & Announcement",
+        "spec": "Campaign · Launch",
+        "note": "The launch visual sets the system: the NCC mark, \"Northern Renaissance\" in bold with an italic serif line, the Kano flyover monument as the photographic ground, and the skyline strip.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/announcement.jpg",
+              "alt": "NCC 2025 announcement",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/happening-today.jpg",
+              "alt": "Happening Today post",
+              "width": 1400,
+              "height": 1750
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Teasers, Countdown & Registration",
+        "spec": "Campaign · Build-up",
+        "note": "Teasers and quotes opened the season (\"November in Kano\"), then countdown and registration posts reused the diagonal cut and monument photo, switching colourways to keep the feed fresh.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/november-in-kano.jpg",
+              "alt": "November in Kano teaser",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/quote-heritage.jpg",
+              "alt": "Quote: Creativity is the bridge between heritage and possibility",
+              "width": 1400,
+              "height": 1750
+            }
+          ],
+          [
+            {
+              "src": "/work/ncc/two-days-to-go.jpg",
+              "alt": "Two days to go countdown",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/registration-reopened.jpg",
+              "alt": "Registration reopened post",
+              "width": 1400,
+              "height": 1750
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Who It's For",
+        "spec": "Campaign · Audience series",
+        "note": "A series speaking directly to each creative community, from performers to digital creators, with a photo, a short promise and the registration link.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/for-performers.jpg",
+              "alt": "For the Performers post",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/for-digital-creators.jpg",
+              "alt": "For the Digital Creators post",
+              "width": 1400,
+              "height": 1750
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Calls for Exhibitors & Volunteers",
+        "spec": "Campaign · Recruitment",
+        "note": "Recruitment posts in the same system: an exhibitor call with a branded 2 × 2 m stall shown in 3D, and a volunteer call in the olive colourway.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/call-for-exhibitors.jpg",
+              "alt": "Call for Exhibitors",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/call-for-volunteers.jpg",
+              "alt": "Call for Volunteers",
+              "width": 1400,
+              "height": 1750
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Advisory Board",
+        "spec": "Campaign · Animated introductions",
+        "note": "Short animated cards introducing each advisory board member, in a dark green colourway with the portrait frame and logo kept constant.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/advisory-board-1.jpg",
+              "alt": "Advisory board: Dr. Bashir Abdu Muzakkari",
+              "width": 648,
+              "height": 810,
+              "video": "/work/ncc/advisory-board-1.mp4"
+            },
+            {
+              "src": "/work/ncc/advisory-board-2.jpg",
+              "alt": "Advisory board: Prince Daniel Aboki",
+              "width": 648,
+              "height": 810,
+              "video": "/work/ncc/advisory-board-2.mp4"
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Speakers & Panels",
+        "spec": "Campaign · Line-up announcements",
+        "note": "Panel line-ups and the full speakers board use one portrait frame and a role tag (Speaker, Panelist, Moderator) so every face sits in the same system.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/speakers.jpg",
+              "alt": "Speakers line-up",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/panel-framework.jpg",
+              "alt": "Panel: Building a framework for a driven creative economy",
+              "width": 1400,
+              "height": 1750
+            }
+          ],
+          [
+            {
+              "src": "/work/ncc/panel-passion-to-profit.jpg",
+              "alt": "Panel: From Passion to Profit",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/founders-chat-panel.jpg",
+              "alt": "Founders Chat panel line-up",
+              "width": 1400,
+              "height": 1750
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Speaker Spotlights",
+        "spec": "Campaign · Individual cards",
+        "note": "One card per speaker: a portrait in a tall frame, the surname set vertically behind it, and the name and title below.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/speaker-aisha-augie.jpg",
+              "alt": "Speaker card: Aisha Adamu Augie",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/panelist-nazir-halliru.jpg",
+              "alt": "Panelist card: Muhammad Nazir Halliru",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/panelist-emmanuel.jpg",
+              "alt": "Panelist card: Emmanuel Emmanuel",
+              "width": 1400,
+              "height": 1750
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Founders Chat",
+        "spec": "Campaign · Session series",
+        "note": "\"Founders Unscripted: The Stories Behind the Spark\". Black-and-white portraits on the blue colourway set this session apart from the main programme.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/founders-chat-salamatu.jpg",
+              "alt": "Founders Chat: Salamatu Adamu",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/founders-chat-sadiq-salihu.jpg",
+              "alt": "Founders Chat: Sadiq Salihu Abubakar",
+              "width": 1400,
+              "height": 1750
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Exhibitors",
+        "spec": "Campaign · Exhibitor cards",
+        "note": "A white logo card on the monument ground, so every exhibitor's own brand reads clearly.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/exhibitor-qalb.jpg",
+              "alt": "Exhibitor: Qalb Inc.",
+              "width": 1400,
+              "height": 1750
+            },
+            {
+              "src": "/work/ncc/exhibitor-yare.jpg",
+              "alt": "Exhibitor: Yare",
+              "width": 1400,
+              "height": 1750
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Certificate of Appreciation",
+        "spec": "Print · A4",
+        "note": "The volunteer certificate brings the identity to print: the event motif on the edge, the skyline at the base and an NCC 2025 seal.",
+        "rows": [
+          [
+            {
+              "src": "/work/ncc/certificate.jpg",
+              "alt": "Certificate of appreciation",
+              "width": 1400,
+              "height": 1980
+            }
+          ]
+        ]
       }
     ]
-  }
-];
-
-export const kpiStats = [
-  { value: "120+", label: "Projects Delivered" },
-  { value: "35+", label: "Brands Transformed" },
-  { value: "8", label: "Core Industries Served" },
-  { value: "Nigeria -> Global", label: "Market Reach" }
-];
-
-export const clientLogos = [
-  { name: "Golden Penny", src: "/clients/golden-penny-foods.png" },
-  {
-    name: "Kano State Government",
-    src: "/clients/kano-state-government.png",
-    imageClassName: "h-14 w-14 object-contain opacity-95"
-  },
-  { name: "Kano First", src: "/clients/kano-first.png" },
-  {
-    name: "Global Shapers Community Kano",
-    src: "/clients/global-shapers-kano.png",
-    imageClassName: "h-12 w-auto max-w-[160px] object-contain opacity-95"
-  },
-  { name: "Mai Kwabo", src: "/clients/mai-kwabo.png" },
-  { name: "NNFM", src: "/clients/nnfm.png" }
-];
-
-export const projectVisuals = [
-  "from-accent/40 to-slate-900/60",
-  "from-teal-400/35 to-slate-900/55",
-  "from-accent/30 to-slate-900/70",
-  "from-teal-300/25 to-accent/50"
-];
-
-export const testimonials = [
-  {
-    name: "Amara Eze",
-    role: "Director, Nexus Civic Agency",
-    quote:
-      "SBJ Studio gave us more than a visual facelift. They built a strategic communication identity our teams now trust."
-  },
-  {
-    name: "Tunde Afolayan",
-    role: "Founder, AFE Mobility",
-    quote:
-      "Their thinking is sharp, practical, and premium. Every creative decision linked directly to our growth goals."
-  },
-  {
-    name: "Binta Yusuf",
-    role: "Programs Lead, Zuri Health Network",
-    quote:
-      "From discovery to delivery, SBJ Studio understood our audience deeply and helped us tell stories that moved people."
-  },
-  {
-    name: "Chidi Okonkwo",
-    role: "Managing Director, Korin Group",
-    quote:
-      "Our pitch materials went from dated to boardroom-ready. SBJ Studio elevated how stakeholders perceive us across Africa."
-  },
-  {
-    name: "Hauwa Ibrahim",
-    role: "Special Adviser, Communications — Kano State Government",
-    quote:
-      "They turned complex council outcomes into clear, shareable visuals citizens and media could understand immediately."
-  },
-  {
-    name: "Fatima Ambil",
-    role: "Director, Ambil Nigeria",
-    quote:
-      "Our website finally matches the quality of our events. The team captured our brand voice and made booking inquiries effortless."
-  },
-  {
-    name: "Emeka Nwosu",
-    role: "Marketing Lead, Golden Penny Foods",
-    quote:
-      "Campaign assets were consistent, on-brand, and delivered on tight timelines. Engagement improved across our key channels."
-  },
-  {
-    name: "Zainab Abubakar",
-    role: "Curator, Global Shapers Community Kano",
-    quote:
-      "SBJ Studio helped us package our programs with polish and clarity. Partners and sponsors responded to the new look instantly."
-  },
-  {
-    name: "David Okafor",
-    role: "Head of Brand, Mai Kwabo",
-    quote:
-      "They listen first, then design. Every revision felt intentional — not decorative — and our retail presence is stronger for it."
-  },
-  {
-    name: "Sarah Mensah",
-    role: "Communications Manager, NNFM",
-    quote:
-      "Reliable partners from concept to rollout. Their content systems keep our teams aligned without slowing execution down."
-  },
-  {
-    name: "Ibrahim Musa",
-    role: "CEO, NovaBridge Consulting",
-    quote:
-      "We needed credibility fast for a new market entry. SBJ Studio delivered a full brand and digital kit that opened doors."
-  },
-  {
-    name: "Grace Adeyemi",
-    role: "Creative Director, Pulse Media Collective",
-    quote:
-      "Sharp storytelling, beautiful craft, and zero drama on set. They are our go-to when the brief has to perform commercially."
   }
 ];

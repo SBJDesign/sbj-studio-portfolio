@@ -5,23 +5,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0C0C1E",
-        surface: "#141730",
-        text: "#f7f7f7",
-        muted: "#b5b5b5",
-        accent: "#36C9C2",
-        coral: "#FF6A6C"
+        ink: "#101010",
+        "ink-soft": "#1a1a1a",
+        paper: "#ffffff",
+        mute: "#7f8080",
+        line: "#bbbbbb",
       },
-        boxShadow: {
-        glow: "0 0 40px rgba(54, 201, 194, 0.25)",
-        "glow-coral": "0 0 36px rgba(255, 106, 108, 0.22)",
-        card: "0 1px 0 rgba(255, 255, 255, 0.07) inset, 0 24px 48px -24px rgba(0, 0, 0, 0.5)",
-        elevated: "0 4px 24px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.05) inset",
-        "card-light": "0 1px 0 rgba(0, 0, 0, 0.04) inset, 0 18px 40px -20px rgba(15, 23, 42, 0.12)"
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Times New Roman", "serif"]
       },
-      backgroundImage: {
-        "hero-mesh":
-          "radial-gradient(ellipse 80% 50% at 20% -20%, rgba(54, 201, 194, 0.15), transparent), radial-gradient(ellipse 55% 45% at 100% 10%, rgba(255, 106, 108, 0.07), transparent), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 255, 255, 0.06), transparent)"
+      letterSpacing: {
+        display: "-0.04em"
       }
     }
   },

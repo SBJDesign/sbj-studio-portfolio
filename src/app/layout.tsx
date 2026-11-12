@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import "@fontsource-variable/instrument-sans";
+import "@fontsource/instrument-serif/400.css";
+import "@fontsource/instrument-serif/400-italic.css";
 import "./globals.css";
 import { SiteShell } from "@/components/site-shell";
 
-const heading = Space_Grotesk({ subsets: ["latin"], variable: "--font-heading" });
-const body = Inter({ subsets: ["latin"], variable: "--font-body" });
-
 export const metadata: Metadata = {
-  title: "SBJ Studio | Premium Creative Agency",
+  title: "SBJ Studio | Brand, Design & Media Studio in Kano",
   description:
-    "SBJ Studio helps businesses, startups, and institutions build strategic brands, high-impact design, and growth-focused media.",
+    "SBJ Studio is a Kano-based studio building brands, design systems, websites and media that help businesses, institutions and public-sector teams grow.",
   metadataBase: new URL("https://sbjstudio.com"),
   icons: {
     icon: [{ url: "/logo.png", type: "image/png" }],
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "SBJ Studio",
-    description: "We Design Growth, Not Just Graphics",
+    description: "Design that drives growth.",
     type: "website"
   }
 };
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${heading.variable} ${body.variable} bg-background text-text antialiased`}>
+      <body className="bg-ink font-sans antialiased">
         <SiteShell>{children}</SiteShell>
       </body>
     </html>
