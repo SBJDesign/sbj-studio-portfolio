@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 function Logo({ size = 44 }: { size?: number }) {
   return (
     <Image
-      src="/logo.png"
+      src="/logo-white.png"
       alt="SBJ Studio"
       width={size}
       height={Math.round((size * 150) / 159)}
@@ -33,8 +33,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
     };
   }, [open]);
 
-  const left = navLinks.slice(0, 2);
-  const right = navLinks.slice(2);
 
   const linkClass = (href: string) =>
     cn("nav-link", pathname.startsWith(href) && "underline underline-offset-4");
@@ -43,24 +41,27 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <>
       {/* Nav text sits in its own fixed layer with difference blending so it stays readable over dark and light sections */}
       <header className="pointer-events-none fixed inset-x-0 top-0 z-50 text-white mix-blend-difference">
-        <div className="mx-auto hidden h-24 max-w-[1280px] items-center justify-center gap-10 px-8 md:flex">
-          <nav className="pointer-events-auto flex w-56 justify-end gap-10">
-            {left.map((l) => (
+        <div className="mx-auto hidden h-24 max-w-[1440px] items-center justify-between px-10 md:flex">
+          <Link
+            href="/"
+            aria-label="SBJ Studio home"
+            className="pointer-events-auto flex items-center gap-3 transition-transform hover:rotate-[-4deg]"
+          >
+            <Logo size={40} />
+          </Link>
+          <nav className="pointer-events-auto flex gap-9">
+            {navLinks.map((l, i) => (
               <Link key={l.href} href={l.href} className={linkClass(l.href)}>
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-          <span className="w-14" aria-hidden />
-          <nav className="pointer-events-auto flex w-56 gap-10">
-            {right.map((l) => (
-              <Link key={l.href} href={l.href} className={linkClass(l.href)}>
+                <span className="mr-1.5 opacity-50">0{i + 1}</span>
                 {l.label}
               </Link>
             ))}
           </nav>
         </div>
-        <div className="flex h-20 items-center justify-end px-5 md:hidden">
+        <div className="flex h-20 items-center justify-between px-5 md:hidden">
+          <Link href="/" aria-label="SBJ Studio home" className="pointer-events-auto">
+            <Logo size={38} />
+          </Link>
           <button
             type="button"
             onClick={() => setOpen(true)}
@@ -73,14 +74,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      {/* Logo mark — kept outside the blend layer so its brand colour stays true */}
-      <Link
-        href="/"
-        aria-label="SBJ Studio home"
-        className="fixed left-5 top-5 z-50 transition-transform hover:rotate-[-8deg] md:left-1/2 md:top-6 md:-translate-x-1/2"
-      >
-        <Logo />
-      </Link>
 
       <AnimatePresence>
         {open ? (
@@ -129,8 +122,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div className="mx-auto grid max-w-[1280px] gap-14 md:grid-cols-[1fr_auto] md:items-end">
           <div className="relative aspect-[5/3] w-full max-w-sm overflow-hidden rounded-2xl bg-ink-soft">
             <Image
-              src="/portfolio/ambil-nigeria-website/about.png"
-              alt="Website design by SBJ Studio"
+              src="/work/gta/arch-mockup.jpg"
+              alt="Global Tech Africa 2026 welcome arch by SBJ Studio"
               fill
               sizes="(min-width: 768px) 384px, 100vw"
               className="object-cover"

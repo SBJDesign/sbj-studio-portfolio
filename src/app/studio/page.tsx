@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { GetInTouch, ServicesList } from "@/components/home-sections";
 import { PageIntro } from "@/components/page-intro";
 import { Reveal } from "@/components/reveal";
-import { clientLogos } from "@/data/site-data";
 
 export const metadata: Metadata = {
   title: "Studio | SBJ Studio",
@@ -70,29 +68,6 @@ export default function StudioPage() {
                 <h3 className="display-serif text-[44px]">{p.title}</h3>
                 <p className="text-lg leading-snug text-ink/80">{p.text}</p>
               </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-ink px-5 py-24 text-white md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1280px]">
-          <p className="text-[14px] text-mute">Clients we have worked with</p>
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {clientLogos.map((logo) => (
-              <div
-                key={logo.name}
-                className="flex aspect-square items-center justify-center rounded-xl bg-white p-6"
-                title={logo.name}
-              >
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  width={160}
-                  height={160}
-                  className="max-h-full w-auto object-contain"
-                />
-              </div>
             ))}
           </div>
         </div>

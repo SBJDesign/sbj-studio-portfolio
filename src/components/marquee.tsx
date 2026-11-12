@@ -6,7 +6,7 @@ export function Marquee({ text, className }: { text: string; className?: string 
         {[...items, ...items].map((t, i) => (
           <span key={i} className="display-serif display-lg px-8">
             {t}
-            <span className="mx-8 not-italic text-accent">✦</span>
+            <span className="mx-8 not-italic">✦</span>
           </span>
         ))}
       </div>

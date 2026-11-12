@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { contact, positioning, projects, serviceGroups, studioIntro } from "@/data/site-data";
+import { Film } from "./film";
 import { Marquee } from "./marquee";
-import { ProjectCard } from "./project-card";
 import { Reveal } from "./reveal";
 
 /* ---------- 1. Hero: centred intro, giant wordmark, scaling showreel frame ---------- */
@@ -48,16 +48,14 @@ export function HomeHero() {
       <div className="bg-ink-soft px-4 pb-16 pt-10 md:px-16 md:pb-24 md:pt-16">
         <motion.div
           ref={reelRef}
+          className="relative mx-auto aspect-[16/9] max-w-[1150px] overflow-hidden rounded-2xl"
           style={{ scale }}
-          className="relative mx-auto aspect-[16/9] max-w-[1150px] overflow-hidden rounded-[1.75rem]"
         >
-          <Image
-            src="/portfolio/ambil-nigeria-website/hero.png"
-            alt="Ambil Nigeria website, designed by SBJ Studio"
-            fill
-            priority
-            sizes="(min-width: 1200px) 1150px, 100vw"
-            className="object-cover object-top"
+          <Film
+            src="/work/gta/gta-teaser.mp4"
+            poster="/work/gta/poster.jpg"
+            label="Global Tech Africa 2026 venue branding by SBJ Studio"
+            className="absolute inset-0"
           />
         </motion.div>
       </div>
@@ -94,10 +92,18 @@ export function HomeStatement() {
   );
 }
 
-/* ---------- 3. Selected projects: sticky serif title with staggered cards scrolling over it ---------- */
+/* ---------- 3. Selected projects: sticky serif title with staggered frames scrolling over it ---------- */
 export function SelectedProjects() {
-  const featured = projects.filter((p) => p.coverImage || p.images?.length);
-  const offsets = ["md:ml-auto md:mr-[4%]", "md:mr-auto md:ml-[4%]", "md:mx-auto"];
+  const [gta, ncc] = projects;
+  const highlights = [
+    { project: gta, src: "/work/gta/arch-mockup.jpg", label: "Welcome Arch" },
+    { project: ncc, src: "/work/ncc/in-entrance-fascia.jpg", label: "Venue Entrance" },
+    { project: gta, src: "/work/gta/in-photo-wall.jpg", label: "Photo Wall Gateway" },
+    { project: ncc, src: "/work/ncc/announcement.jpg", label: "Campaign Key Visual" },
+    { project: gta, src: "/work/gta/in-registration.jpg", label: "Registration" },
+    { project: ncc, src: "/work/ncc/in-speakers-wall.jpg", label: "Speakers Wall" }
+  ];
+  const offsets = ["md:ml-auto md:mr-[4%]", "md:mr-auto md:ml-[4%]", "md:mx-auto", "md:ml-auto md:mr-[10%]", "md:mr-auto md:ml-[12%]", "md:ml-auto md:mr-[6%]"];
 
   return (
     <section className="relative bg-ink text-white">
@@ -110,23 +116,26 @@ export function SelectedProjects() {
       </div>
 
       <div className="relative z-10 -mt-[100svh] space-y-24 px-5 pb-40 pt-[60svh] md:space-y-40 md:px-10">
-        {featured.map((project, i) => (
-          <Reveal key={project.slug} className={`w-full md:w-[31%] ${offsets[i % offsets.length]}`}>
-            <ProjectCard project={project} priority={i === 0} />
+        {highlights.map((h, i) => (
+          <Reveal key={h.src} className={`w-full md:w-[24%] ${offsets[i]}`}>
+            <Link href={`/work/${h.project.slug}`} className="group block">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-ink-soft">
+                <Image
+                  src={h.src}
+                  alt={`${h.project.title}: ${h.label}`}
+                  fill
+                  priority={i === 0}
+                  sizes="(min-width: 768px) 34vw, 100vw"
+                  className="object-cover object-top transition duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
+              <p className="mt-5 font-serif text-[34px] leading-none">{h.project.title}</p>
+              <p className="mt-2 text-base text-white/70">
+                <span className="opacity-50">0{i + 1} — </span>{h.label} · <span className="link-underline">View case study</span>
+              </p>
+            </Link>
           </Reveal>
         ))}
-
-        <Reveal className={`w-full md:w-[31%] ${offsets[featured.length % offsets.length]}`}>
-          <div className="aspect-[399/245] rounded-xl border border-white/15 bg-ink-soft" />
-          <p className="display-serif mt-5 text-[40px] not-italic leading-none">Next case study</p>
-          <p className="mt-2 text-base text-white/60">Coming soon</p>
-        </Reveal>
-
-        <div className="pt-10 text-center">
-          <Link href="/work" className="text-[13px] uppercase tracking-[0.04em] link-underline">
-            See all work →
-          </Link>
-        </div>
       </div>
     </section>
   );
@@ -136,11 +145,11 @@ export function SelectedProjects() {
 function ServiceVisual() {
   const reduce = useReducedMotion();
   return (
-    <div className="relative flex aspect-[245/351] w-full max-w-[245px] items-center justify-center overflow-hidden rounded-lg bg-accent-pale">
+    <div className="relative flex aspect-[245/351] w-full max-w-[245px] items-center justify-center overflow-hidden rounded-lg bg-[#efefef]">
       {[0, 1, 2, 3].map((i) => (
         <motion.div
           key={i}
-          className="absolute h-16 w-24 rounded-md border border-[#0f5f5b] bg-accent"
+          className="absolute h-16 w-24 rounded-md border border-ink bg-ink"
           style={{ rotate: -28, skewX: 20, opacity: 1 - i * 0.18 }}
           animate={reduce ? undefined : { y: [i * 18 - 27, i * 18 - 37, i * 18 - 27] }}
           transition={{ duration: 2.4, repeat: Infinity, delay: i * 0.18, ease: "easeInOut" }}
@@ -187,10 +196,10 @@ export function GetInTouch() {
   return (
     <section className="bg-ink px-5 pt-32 text-center text-white md:px-10 md:pt-44">
       <Reveal>
-        <p className="text-[14px] tracking-[-0.03em] text-mute">Get in touch</p>
+        <p className="text-[14px] tracking-[-0.03em] text-mute">Start a project</p>
         <a
           href={`mailto:${contact.email}`}
-          className="display-serif mt-4 inline-block break-all not-italic leading-none transition-colors hover:text-accent"
+          className="display-serif mt-4 inline-block break-all not-italic leading-none transition-colors hover:opacity-60"
           style={{ fontSize: "clamp(2rem, 6.5vw, 5.75rem)" }}
         >
           {contact.email}

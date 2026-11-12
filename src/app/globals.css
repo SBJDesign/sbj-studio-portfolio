@@ -30,12 +30,12 @@
   }
 
   ::selection {
-    background: #36c9c2;
-    color: #101010;
+    background: #101010;
+    color: #ffffff;
   }
 
   :focus-visible {
-    outline: 2px solid #36c9c2;
+    outline: 2px solid currentColor;
     outline-offset: 3px;
   }
 }
@@ -75,7 +75,7 @@
   }
 
   .field {
-    @apply w-full border-0 border-b border-white/25 bg-transparent px-0 py-4 text-lg text-white outline-none transition placeholder:text-white/35 focus:border-accent;
+    @apply w-full border-0 border-b border-white/25 bg-transparent px-0 py-4 text-lg text-white outline-none transition placeholder:text-white/35 focus:border-white;
   }
 
   .marquee-track {

@@ -78,7 +78,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-[15px] text-ink transition hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-[15px] text-ink transition hover:bg-white/80 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "loading" ? "Sending..." : "Send enquiry →"}
       </button>
@@ -86,7 +86,7 @@ export function ContactForm() {
         <p
           role={status === "error" ? "alert" : "status"}
           aria-live="polite"
-          className={`text-sm ${status === "success" ? "text-accent" : "text-red-300"}`}
+          className={`text-sm ${status === "success" ? "text-white" : "text-red-300"}`}
         >
           {message}
         </p>

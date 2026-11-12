@@ -1,33 +1,55 @@
 import type { Metadata } from "next";
-import { PageIntro } from "@/components/page-intro";
-import { ProjectCard } from "@/components/project-card";
+import Image from "next/image";
+import { Film } from "@/components/film";
+import Link from "next/link";
+import { GetInTouch } from "@/components/home-sections";
 import { Reveal } from "@/components/reveal";
 import { projects } from "@/data/site-data";
 
 export const metadata: Metadata = {
   title: "Work | SBJ Studio",
-  description: "Selected brand, design, digital and media projects by SBJ Studio."
+  description: "Case studies from SBJ Studio, a brand, design and media studio in Kano."
 };
 
 export default function WorkPage() {
   return (
-    <>
-      <PageIntro
-        lead="Brands, websites, campaigns and public-sector communication we have shaped with our clients."
-        title="Work"
-      />
-      <section className="bg-ink px-5 pb-32 md:px-10">
-        <div className="mx-auto grid max-w-[1280px] gap-x-10 gap-y-20 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
-            <Reveal key={project.slug} delay={(i % 3) * 0.08} className={i % 3 === 1 ? "lg:mt-24" : ""}>
-              <ProjectCard project={project} priority={i < 3} />
-              <p className="mt-3 text-[13px] uppercase tracking-[0.04em] text-white/45">
-                {project.category} · {project.client}
-              </p>
-            </Reveal>
-          ))}
-        </div>
+    <div className="bg-ink text-white">
+      <section className="px-6 pb-20 pt-48 text-center md:pt-56">
+        <Reveal>
+          <p className="text-[14px] text-mute">Case Studies</p>
+          <p className="mx-auto mt-4 max-w-[34rem] font-serif text-[28px] leading-[1.1] md:text-[32px]">
+            A curated look at how we help businesses, institutions and events turn big ideas into brands people
+            remember.
+          </p>
+        </Reveal>
       </section>
-    </>
+      <div className="border-t border-white/20" />
+
+      <section className="mx-auto grid max-w-[1180px] gap-x-12 gap-y-20 px-6 py-24 md:grid-cols-2 md:px-10">
+        {projects.map((project) => (
+          <Reveal key={project.slug}>
+            <Link href={`/work/${project.slug}`} className="group block">
+              {project.teaser ? (
+                <Film src={project.teaser} poster={project.card} label={project.title} className="relative aspect-video" />
+              ) : (
+                <div className="relative aspect-video overflow-hidden bg-ink-soft">
+                  <Image
+                    src={project.card}
+                    alt={project.title}
+                    fill
+                    sizes="(min-width: 768px) 540px, 100vw"
+                    className="object-cover object-top transition duration-700 group-hover:scale-[1.04]"
+                  />
+                </div>
+              )}
+              <p className="mt-5 font-serif text-[32px] leading-none">{project.title}</p>
+              <p className="mt-2 text-[15px] text-white/60">{project.tagline}</p>
+            </Link>
+          </Reveal>
+        ))}
+      </section>
+
+      <GetInTouch />
+    </div>
   );
 }
