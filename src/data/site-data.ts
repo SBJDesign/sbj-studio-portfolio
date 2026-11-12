@@ -35,12 +35,103 @@ export type Project = {
 };
 
 export const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/work", label: "Work" },
+  { href: "/studio", label: "Studio" },
+  { href: "/thoughts", label: "Thoughts" },
   { href: "/contact", label: "Contact" }
+];
+
+export const footerLinks = [
+  { href: "/", label: "Home" },
+  { href: "/work", label: "Work" },
+  { href: "/studio", label: "About" },
+  { href: "/thoughts", label: "Thoughts" },
+  { href: "/contact", label: "Contact" }
+];
+
+export const contact = {
+  email: "sbjdesigns.ng@gmail.com",
+  whatsappLabel: "08169576864",
+  whatsappUrl: "https://wa.me/2348169576864",
+  instagramLabel: "@sbjdesigns.ng",
+  instagramUrl: "https://www.instagram.com/sbjdesigns.ng",
+  location: "Kano, Nigeria"
+};
+
+export const socialLinks = [
+  { href: contact.instagramUrl, label: "Instagram" },
+  { href: contact.whatsappUrl, label: "WhatsApp" },
+  { href: `mailto:${contact.email}`, label: "Email" }
+];
+
+export const studioIntro =
+  "We are a Kano-based studio helping businesses, institutions and changemakers build brands, products and stories that people trust and act on.";
+
+export const positioning = [
+  "We turn ideas into identities for growing businesses, public institutions and community builders across Northern Nigeria and beyond.",
+  "We build brands, websites and campaigns that connect with people through strategy, design and media.",
+  "Every project starts with one question: what should people believe, feel and do after meeting this brand?"
+];
+
+export type ServiceGroup = {
+  title: string;
+  description: string;
+  items: string[];
+};
+
+export const serviceGroups: ServiceGroup[] = [
+  {
+    title: "Strategy",
+    description:
+      "Clear thinking that helps a brand know who it serves, what it stands for and how it will grow.",
+    items: [
+      "Brand positioning",
+      "Messaging architecture",
+      "Go-to-market and launch planning",
+      "Campaign planning and execution maps",
+      "Digital marketing and SEO",
+      "Analytics and performance reporting"
+    ]
+  },
+  {
+    title: "Branding",
+    description:
+      "Visual and verbal identity systems that make a brand recognisable, credible and consistent everywhere it shows up.",
+    items: [
+      "Visual identity and brand guidelines",
+      "Naming and verbal identity",
+      "Company profiles",
+      "Presentation templates",
+      "Letterheads and stationery",
+      "Branded communication kits"
+    ]
+  },
+  {
+    title: "Design & Digital",
+    description:
+      "From campaign key visuals to full websites, design that is beautiful, useful and built to convert.",
+    items: [
+      "Marketing websites and landing pages",
+      "UI systems and prototyping",
+      "Campaign key visuals",
+      "Infographics and data visualisation",
+      "Print and outdoor assets",
+      "Social media design systems"
+    ]
+  },
+  {
+    title: "Media & Content",
+    description:
+      "Stories, films and content engines that keep a brand visible, trusted and talked about.",
+    items: [
+      "Brand films and documentaries",
+      "Commercial video production",
+      "Photography",
+      "Content calendars",
+      "Social content strategy",
+      "Editorial and post copy"
+    ]
+  }
 ];
 
 export const serviceIcons = ["◆", "◎", "✦", "◇", "▣", "◈", "⬡", "✧"];

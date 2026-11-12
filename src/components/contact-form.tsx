@@ -40,12 +40,9 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card-glass-gradient card-accent-top relative space-y-5 !p-8 md:!p-10">
-      <div>
-        <h3 className="text-lg font-bold text-text">Project inquiry</h3>
-        <p className="mt-1 text-sm text-muted">Share a short brief — we respond within one business day.</p>
-      </div>
-      <label className="block text-sm font-medium text-text/90">
+    <form onSubmit={handleSubmit} className="space-y-2">
+      <p className="pb-4 text-[17px] text-white/70">Share a short brief and we will get back to you.</p>
+      <label className="block text-[13px] uppercase tracking-[0.04em] text-white/45">
         Name
         <input
           type="text"
@@ -53,10 +50,10 @@ export function ContactForm() {
           required
           value={form.name}
           onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
-          className="input-field"
+          className="field normal-case tracking-normal"
         />
       </label>
-      <label className="block text-sm font-medium text-text/90">
+      <label className="block text-[13px] uppercase tracking-[0.04em] text-white/45">
         Email
         <input
           type="email"
@@ -64,26 +61,26 @@ export function ContactForm() {
           required
           value={form.email}
           onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
-          className="input-field"
+          className="field normal-case tracking-normal"
         />
       </label>
-      <label className="block text-sm font-medium text-text/90">
-        Project Details
+      <label className="block text-[13px] uppercase tracking-[0.04em] text-white/45">
+        Project details
         <textarea
           name="details"
           rows={5}
           required
           value={form.details}
           onChange={(event) => setForm((prev) => ({ ...prev, details: event.target.value }))}
-          className="input-field min-h-[140px] resize-y"
+          className="field min-h-[140px] resize-y normal-case tracking-normal"
         />
       </label>
       <button
         type="submit"
         disabled={status === "loading"}
-        className="btn-primary w-full justify-center py-3.5 disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-[15px] text-ink transition hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "loading" ? "Sending..." : "Send Inquiry"}
+        {status === "loading" ? "Sending..." : "Send enquiry →"}
       </button>
       {status !== "idle" ? (
         <p
