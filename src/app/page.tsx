@@ -1,3 +1,4 @@
+import { ClientLogos, Testimonials } from "@/components/clients-section";
 import {
   GetInTouch,
   HomeHero,
@@ -13,6 +14,8 @@ export default function HomePage() {
       <HomeStatement />
       <SelectedProjects />
       <ServicesList />
+      <ClientLogos />
+      <Testimonials />
       <GetInTouch />
     </>
   );

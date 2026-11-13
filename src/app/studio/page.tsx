@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClientLogos, Testimonials } from "@/components/clients-section";
 import { GetInTouch, ServicesList } from "@/components/home-sections";
 import { PageIntro } from "@/components/page-intro";
 import { Reveal } from "@/components/reveal";
@@ -74,6 +75,8 @@ export default function StudioPage() {
       </section>
 
       <ServicesList />
+      <ClientLogos />
+      <Testimonials />
       <GetInTouch />
     </>
   );
