@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { Film } from "@/components/film";
 import { notFound } from "next/navigation";
@@ -48,6 +49,11 @@ export default async function CaseStudyPage({ params }: Props) {
                 : undefined
           }
         >
+          {project.films.length === 0 ? (
+            <div className={`mx-auto overflow-hidden rounded-2xl ${project.coverWide ? "max-w-[1280px]" : "max-w-[720px]"}`}>
+              <Image src={project.cover} alt={project.title} width={project.coverWide ? 2000 : 1400} height={project.coverWide ? 1125 : 1750} priority sizes={project.coverWide ? "100vw" : "720px"} className="h-auto w-full" />
+            </div>
+          ) : null}
           {project.films.map((film) => (
             <figure key={film.src}>
               <Film
@@ -83,6 +89,16 @@ export default async function CaseStudyPage({ params }: Props) {
                   <dd className="mt-1">{value}</dd>
                 </div>
               ))}
+              {project.url ? (
+                <div className="border-t border-white/15 pt-3">
+                  <dt className="text-white/45">Live site</dt>
+                  <dd className="mt-1">
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="underline decoration-white/30 underline-offset-4 hover:decoration-white">
+                      {project.url.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
+                    </a>
+                  </dd>
+                </div>
+              ) : null}
             </dl>
           </Reveal>
         </div>
@@ -92,7 +108,7 @@ export default async function CaseStudyPage({ params }: Props) {
       <section className="px-6 pb-32">
         <Reveal className="mb-16 px-0 md:px-6">
           <p className="text-[14px] text-mute">The pieces</p>
-          <h2 className="mt-3 font-serif text-[48px] leading-none">From gate to stage</h2>
+          <h2 className="mt-3 font-serif text-[48px] leading-none">Inside the project</h2>
         </Reveal>
         <CaseSections sections={project.sections} />
       </section>

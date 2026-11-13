@@ -122,8 +122,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div className="mx-auto grid max-w-[1280px] gap-14 md:grid-cols-[1fr_auto] md:items-end">
           <div className="relative aspect-[5/3] w-full max-w-sm overflow-hidden rounded-2xl bg-ink-soft">
             <Image
-              src="/work/gta/arch-mockup.jpg"
-              alt="Global Tech Africa 2026 welcome arch by SBJ Studio"
+              src="/work/gta/in-photo-wall.jpg"
+              alt="Global Tech Africa 2026 photo wall by SBJ Studio"
               fill
               sizes="(min-width: 768px) 384px, 100vw"
               className="object-cover"
