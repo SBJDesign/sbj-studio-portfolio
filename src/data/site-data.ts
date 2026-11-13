@@ -2528,6 +2528,237 @@ export const projects: Project[] = [
     ]
   },
   {
+    "slug": "kanofirst-media-brand-guidelines",
+    "title": "KanoFirst Media",
+    "tagline": "Brand identity · Guidelines, social system and applications",
+    "summary": "A brand book for an independent Kano newsroom: one mark, four colours, three typefaces and a social post frame that makes every story recognisable before it is read.",
+    "cover": "/work/kanofirst/p01.jpg",
+    "coverWide": true,
+    "card": "/work/kanofirst/p23.jpg",
+    "films": [],
+    "facts": [
+      [
+        "Client",
+        "KanoFirst Media"
+      ],
+      [
+        "Sector",
+        "News & media"
+      ],
+      [
+        "Location",
+        "Kano, Nigeria"
+      ],
+      [
+        "Deliverables",
+        "Brand guidelines · Social templates · Print & digital applications"
+      ]
+    ],
+    "about": [
+      "KanoFirst Media is an independent news and media platform from Kano State. It reports on leadership, governance and community development, and wants Northern Nigeria seen through its progress, its innovators and its people.",
+      "As the newsroom grew, posts, badges, banners and videos were being made by different hands, and they had begun to look like different outlets. A newsroom earns trust through consistency, so the brand needed one clear set of rules.",
+      "We wrote those rules into a 31-page guideline. It sets the mark and its four versions, a palette led by KanoFirst Teal with greens and a lime accent, and three typefaces with three jobs: Helvetica Neue for headlines, Montserrat for text and Hausa, Oswald for the wordmark only. It also covers a voice that sounds like a newsroom, not a campaign, with writing rules for English and Hausa.",
+      "The imagery is Kano itself, from Gidan Rumfa to the Durbar and Water View. The applications include a fixed 4:5 social frame with five editable templates, stationery, press badges, the website, video lower thirds and outdoor banners."
+    ],
+    "sections": [
+      {
+        "name": "Brand Foundation",
+        "spec": "Purpose · Values · Voice",
+        "note": "Who KanoFirst is, what it does, and how it sounds: credible, neutral, clear and local, with rules for headlines, money, dates and Hausa letters.",
+        "rows": [
+          [
+            {
+              "src": "/work/kanofirst/p02.jpg",
+              "alt": "Introduction page",
+              "width": 1755,
+              "height": 1240
+            }
+          ],
+          [
+            {
+              "src": "/work/kanofirst/p05.jpg",
+              "alt": "Who we are",
+              "width": 1755,
+              "height": 1240
+            },
+            {
+              "src": "/work/kanofirst/p07.jpg",
+              "alt": "Personality and voice",
+              "width": 1755,
+              "height": 1240
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Logo",
+        "spec": "Mark · Versions · Placement",
+        "note": "A square built like a front page. Four versions for different uses, and clear guidance on where the logo sits on photos and colour.",
+        "rows": [
+          [
+            {
+              "src": "/work/kanofirst/p10.jpg",
+              "alt": "Logo construction",
+              "width": 1755,
+              "height": 1240
+            }
+          ],
+          [
+            {
+              "src": "/work/kanofirst/p11.jpg",
+              "alt": "Logo versions",
+              "width": 1755,
+              "height": 1240
+            },
+            {
+              "src": "/work/kanofirst/p13.jpg",
+              "alt": "Logo placement",
+              "width": 1755,
+              "height": 1240
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Colour & Type",
+        "spec": "Palette · Typography",
+        "note": "Teal leads, greens build energy, lime is the accent and mint washes print. Each typeface has one job, with a glyph check for Hausa letters and the naira sign.",
+        "rows": [
+          [
+            {
+              "src": "/work/kanofirst/p15.jpg",
+              "alt": "Colour palette",
+              "width": 1755,
+              "height": 1240
+            },
+            {
+              "src": "/work/kanofirst/p17.jpg",
+              "alt": "Typography",
+              "width": 1755,
+              "height": 1240
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Kit & Photography",
+        "spec": "Graphic elements · Imagery",
+        "note": "The shapes, skyline and icons that build every layout, and honest photojournalism of real Kano people and places.",
+        "rows": [
+          [
+            {
+              "src": "/work/kanofirst/p19.jpg",
+              "alt": "Graphic kit",
+              "width": 1755,
+              "height": 1240
+            },
+            {
+              "src": "/work/kanofirst/p20.jpg",
+              "alt": "Photography",
+              "width": 1755,
+              "height": 1240
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Social Post System",
+        "spec": "1080 × 1350 · English & Hausa",
+        "note": "One frame for every story. The logo, margins and footer never move, so the feed reads like pages of the same paper.",
+        "rows": [
+          [
+            {
+              "src": "/work/kanofirst/p22.jpg",
+              "alt": "Social post anatomy",
+              "width": 1755,
+              "height": 1240
+            }
+          ],
+          [
+            {
+              "src": "/work/kanofirst/p23.jpg",
+              "alt": "Social posts on phones",
+              "width": 1755,
+              "height": 1240
+            }
+          ],
+          [
+            {
+              "src": "/work/kanofirst/p24.jpg",
+              "alt": "Instagram feed",
+              "width": 1755,
+              "height": 1240
+            },
+            {
+              "src": "/work/kanofirst/p25.jpg",
+              "alt": "Post templates",
+              "width": 1755,
+              "height": 1240
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Print, Press & Web",
+        "spec": "Stationery · Badges · Website",
+        "note": "Letterhead, business cards and envelopes, press badges and a mic flag for the field, and the KanoFirst website on desktop and mobile.",
+        "rows": [
+          [
+            {
+              "src": "/work/kanofirst/p26.jpg",
+              "alt": "Stationery",
+              "width": 1755,
+              "height": 1240
+            },
+            {
+              "src": "/work/kanofirst/p27.jpg",
+              "alt": "Press badges and mic flag",
+              "width": 1755,
+              "height": 1240
+            }
+          ],
+          [
+            {
+              "src": "/work/kanofirst/p28.jpg",
+              "alt": "Website",
+              "width": 1755,
+              "height": 1240
+            }
+          ]
+        ]
+      },
+      {
+        "name": "Video & Outdoor",
+        "spec": "YouTube · Banners",
+        "note": "Thumbnails and lower thirds for KanoFirst TV, roll-up and billboard formats, and a closing page with the Kano skyline.",
+        "rows": [
+          [
+            {
+              "src": "/work/kanofirst/p29.jpg",
+              "alt": "Video and YouTube",
+              "width": 1755,
+              "height": 1240
+            },
+            {
+              "src": "/work/kanofirst/p30.jpg",
+              "alt": "Outdoor banners",
+              "width": 1755,
+              "height": 1240
+            }
+          ],
+          [
+            {
+              "src": "/work/kanofirst/p31.jpg",
+              "alt": "Back cover",
+              "width": 1755,
+              "height": 1240
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
     "slug": "sdeen-logistics-brand-identity",
     "title": "SDEEN Logistics",
     "tagline": "Brand identity · Logo, guidelines and applications",
